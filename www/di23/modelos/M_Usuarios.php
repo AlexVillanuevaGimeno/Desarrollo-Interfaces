@@ -34,7 +34,7 @@
                 $SQL.=" ) ";
                 //$SQL.=" AND apellido_1='".$b_texto."' ";
             }
-            
+            // echo $SQL;
             $usuarios=$this->DAO->consultar($SQL);
             return $usuarios;
         }

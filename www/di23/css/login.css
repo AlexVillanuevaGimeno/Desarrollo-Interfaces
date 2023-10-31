@@ -1,0 +1,101 @@
+body {
+    background: rgba(225, 182, 70, 0.65);
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#bloqueBordeBloqueForm {
+    margin: 15% 25%;
+    width: 50% !important;
+    height: 70% !important;
+    border-radius: 20px;
+    border: 4px solid rgba(0, 0, 0, 0.75);
+    background: linear-gradient(90deg, rgba(183, 142, 84, 0.50) 0%, rgba(203, 173, 130, 0.50) 27.6%, rgba(0, 0, 0, 0.11) 50%, rgba(196, 162, 114, 0.50) 65.62%, rgba(183, 142, 84, 0.50) 100%), linear-gradient(180deg, rgba(183, 142, 84, 0.50) 0%, rgba(203, 174, 132, 0.50) 33.33%, rgba(0, 0, 0, 0.21) 47.92%, rgba(197, 163, 116, 0.50) 64.58%, rgba(183, 142, 84, 0.50) 100%);
+    box-shadow: 0px 0px 30px 15px rgba(0, 0, 0, 0.45);
+
+}
+
+#bloqueForm {
+    width: 80%;
+    height: 80%;
+    margin: 10% 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#tituloLogin {
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.79);
+    font-family: Kameron;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#username {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Kameron;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#password {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Kameron;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+input {
+    height: 40px !important;
+    width: 250px !important;
+}
+
+#usuario {
+    border: 2px solid #000;
+    background: rgba(183, 142, 84, 0.60);
+}
+
+#pass {
+    border: 2px solid #000;
+    background: rgba(183, 142, 84, 0.60);
+}
+
+button {
+    height: 40px !important;
+    width: 200px !important;
+}
+
+#botonLogin {
+
+    background: #B78E54;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.30);
+}
+
+#txtLogin {
+    color: #000;
+    text-align: center;
+    font-family: Kameron;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

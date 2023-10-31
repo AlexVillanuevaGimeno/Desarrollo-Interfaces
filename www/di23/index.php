@@ -18,7 +18,6 @@
         <link rel="icon" type="image/x-icon" href="img/favicon.png">
         <script src="js/app.js"></script>
         <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/menu.css">
     </head>
     <body>
         <section id="secEncabezadoPagina" class="container-fluid">
@@ -26,12 +25,12 @@
                 <div class="divLogotipo col-lg-2 col-md-2 col-sm-10">
                     <img src="img/RiftRoyaltyLogo.png">
                 </div>
-                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block">Alejandro Villanueva</div>
-                <div class="divLog col-lg-2 col-md-2 col-sm-2">
+                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block" id="miNombre">Alejandro Villanueva</div>
+                <div class="divLog col-lg-2 col-md-2 col-sm-2 " id="logoLogin">
                     <?php
-                        if(isset($_SESSION['nombre'])){
-                            echo '<a href="logout.php" title="Salir">';
-                            echo $_SESSION['nombre'];
+                        if(isset($_SESSION['usuario'])){
+                            echo '<a href="logout.php" id="logOut" title="Salir">';
+                            echo $_SESSION['usuario'];
                             echo    '<img src="img/logout.png">';
                             echo '</a>';
                         }else{

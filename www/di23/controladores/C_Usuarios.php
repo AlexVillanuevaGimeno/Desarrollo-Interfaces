@@ -22,10 +22,11 @@
             $valido='N';
             $usuario=$this->modelo->buscarUsuarios($filtros);
 
-            if (!empty($usuarios)) {
+            if (!empty($usuario)) {
                 $valido='S';
-                $_SESSION['usuario'] = $usuario[0]['login '];
+                $_SESSION['usuario'] = $usuario[0]['login'];
             }
+            return $valido;
         }
 
         public function getVistaUsuarios(){
