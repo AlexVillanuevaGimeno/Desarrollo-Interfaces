@@ -29,15 +29,39 @@
                     $SQL.=" OR apellido_1 LIKE '%$palabra%' ";
                     $SQL.=" OR apellido_2 LIKE '%$palabra%' ";
                     $SQL.=" OR nombre LIKE '%$palabra%' ";
-                    
                 }
                 $SQL.=" ) ";
-                //$SQL.=" AND apellido_1='".$b_texto."' ";
             }
-            // echo $SQL;
+            if($c_texto!=''){
+                $dTexto=explode(' ', $c_texto);
+                $SQL.=" AND sexo = '$c_texto'";
+            }
             $usuarios=$this->DAO->consultar($SQL);
             return $usuarios;
         }
+
+        // public function buscarUsuariosMayores($filtros=array()){
+        //     $c_texto='';
+        //     $usuario='';
+        //     $pass='';
+        //     extract($filtros);
+            
+        //     $SQL = "SELECT * FROM usuarios WHERE sexo = 'H'";
+
+            
+        //     if ($usuario!='' && $pass!='') {
+        //         $usuario = addslashes($usuario);
+        //         $pass = addslashes($pass);
+        //         $SQL.=" AND login = '$usuario' AND pass = MD5('$pass')";
+        //     }
+        //     if($c_texto!=''){
+        //         $dTexto=explode(' ', $c_texto);
+        //         $SQL.=" AND sexo = '$c_texto'";
+        //     }
+        //     // echo $SQL;
+        //     $usuarios=$this->DAO->consultar($SQL);
+        //     return $usuarios;
+        // }
 
     }
 ?>
