@@ -5,20 +5,30 @@ body {
 }
 
 #bloqueBordeBloqueForm {
-    margin: 15% 25%;
-    width: 50% !important;
-    height: 70% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5em;
+    width: 574px !important;
+    height: 757px !important;
     border-radius: 20px;
     border: 4px solid rgba(0, 0, 0, 0.75);
-    background: linear-gradient(90deg, rgba(183, 142, 84, 0.50) 0%, rgba(203, 173, 130, 0.50) 27.6%, rgba(0, 0, 0, 0.11) 50%, rgba(196, 162, 114, 0.50) 65.62%, rgba(183, 142, 84, 0.50) 100%), linear-gradient(180deg, rgba(183, 142, 84, 0.50) 0%, rgba(203, 174, 132, 0.50) 33.33%, rgba(0, 0, 0, 0.21) 47.92%, rgba(197, 163, 116, 0.50) 64.58%, rgba(183, 142, 84, 0.50) 100%);
+    background: linear-gradient( to bottom right, #E1B646, #B78E54) ;
+     /* background: linear-gradient(90deg, rgba(183, 142, 84, 0.50) 0%, rgba(203, 173, 130, 0.50) 27.6%,
+      rgba(0, 0, 0, 0.11) 50%, rgba(196, 162, 114, 0.50) 65.62%, rgba(183, 142, 84, 0.50) 100%), linear-gradient(180deg, rgba(183, 142, 84, 0.50) 0%, 
+      rgba(203, 174, 132, 0.50) 33.33%, rgba(0, 0, 0, 0.21) 47.92%, rgba(197, 163, 116, 0.50) 64.58%, rgba(183, 142, 84, 0.50) 100%);  */
     box-shadow: 0px 0px 30px 15px rgba(0, 0, 0, 0.45);
 
 }
 
 #bloqueForm {
-    width: 80%;
-    height: 80%;
-    margin: 10% 10%;
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+    border: 3px dashed rgba(0, 0, 0, 0.75);
+    background: linear-gradient( to bottom right, #B78E54, #E1B646) ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +43,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-top: 0;
 }
 
 #form {
@@ -65,8 +76,10 @@ body {
 }
 
 input {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     height: 40px !important;
     width: 250px !important;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.30);
 }
 
 #usuario {
@@ -80,8 +93,10 @@ input {
 }
 
 button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     height: 40px !important;
     width: 200px !important;
+    box-shadow: 0px 0px 15px 10px rgba(0, 0, 0, 0.30);
 }
 
 #botonLogin {
@@ -98,4 +113,9 @@ button {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+#informe{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: medium;
+    font-style: italic;
 }

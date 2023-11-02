@@ -1,3 +1,12 @@
+html{
+    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) !important;
+    min-height: 100%;
+}
+body{
+    background-color: transparent;
+    min-height: 100% !important;
+}
+
 .divLogotipo{
     text-align: left;
 }
@@ -17,7 +26,10 @@
 }
 
 #secEncabezadoPagina{
-    background: linear-gradient(180deg, #B3E0FF 0%, #E3F2FD   100%);
+    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
+}
+#cabeceraApartados{
+    background-color: #b88d37
 }
 #miNombre{
     display: flex !important;
@@ -30,7 +42,7 @@
     justify-content: right;
 }
 #logOut{
-    background: linear-gradient(180deg, #B3E0FF 0%, #E3F2FD   100%);
+    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
@@ -40,7 +52,46 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.5);
 
 }
+#bloqueContenido{
+    background: transparent;
+}
 #secContenidoPagina{
-    background: linear-gradient(180deg, #E3F2FD 0%, #B3E0FF   100%) !important;
+    background: transparent;
+}
+#bloqueTxt{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+#txtBusqueda{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: large;
+}
+input{
+    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) ;
+}
+#btnBuscar{
+    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
+}
+#tablaListado{
+    border: solid black 1px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    margin-top: 15px;
+    
 }
 
+#tablaListado th,
+#tablaListado td {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+#capaResultadosBusqueda{
+    width: 100% !important;
+    height: 700px;
+    scroll-behavior: auto;
+    overflow: auto;
+    
+}

@@ -44,7 +44,7 @@
         </section>
         <section id="secMenuPagina" class="container-fluid">
             
-            <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;" aria-label="Fourth navbar example">
+            <nav class="navbar navbar-expand-sm navbar-light" id="cabeceraApartados" aria-label="Fourth navbar example">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -53,7 +53,7 @@
                     <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
@@ -78,14 +78,9 @@
                 </div>
             </nav>
         </section>
-        <section id="secContenidoPagina" class="container-fluid">
-
-        </section>
-        
-        
-
-
-
+        <div id="bloqueContenido">
+        <section id="secContenidoPagina" class="container-fluid"></section>
+        </div>
         <script src="librerias/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
     </body>
 

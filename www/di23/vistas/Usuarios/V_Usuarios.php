@@ -1,17 +1,24 @@
 <?php
-    echo 'Busqueda de usuarios: ';
+echo '<div id="bloqueTxt"><a id="txtBusqueda">Busqueda de Usuarios</a></div>';
+
     
 
 ?>
 <form id="formularioBuscar" name="formularioBuscar" onkeydown="return event.key != 'Enter';">
 <label for="b_texto">
-    <input type="text" id="b_texto" name="b_texto">
+    <input type="text" id="b_texto" name="b_texto" placeholder="Nombre">
 </label>
-<label for="c_texto">
-    <input type="text" id="c_texto" name="c_texto">
+<label for="c_texto">Sexo
+   <select name="c_texto">
+   <option value="T">Todos</option>
+    <option value="H">H</option>
+    <option value="M">M</option>
+   </select>
 </label>
-<button type="button" onclick="buscarUsuarios()">Buscar</button>
+<label for="d_texto">Actividad
+    <input type="checkbox" id="d_texto" name="d_texto" value="S" >
+</label>
+<button type="button" id="btnBuscar" onclick="buscarUsuarios()">Buscar</button>
 </form>
 <div id="capaResultadosBusqueda">
-    
 </div>

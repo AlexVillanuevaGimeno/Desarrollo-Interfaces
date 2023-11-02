@@ -18,7 +18,6 @@ if ($usuario == '' || $pass == '') {
     ));
     if ($resultado == 'S') {
         header('Location: index.php');
-        echo "vuelta index";
     } else {
         $mensa = 'Datos incorrectos';
     }
@@ -47,6 +46,11 @@ if ($usuario == '' || $pass == '') {
                 <input type="password" id="pass" name="pass" required>
                 <br><br>
                 <button type="submit" id="botonLogin"><a id="txtLogin">Log In</a></button>
+                <br>
+                <a id="informe">
+                    <?php echo $mensa; ?>
+                </a>
+                
             </form>
         </div>
 
@@ -63,7 +67,7 @@ if ($usuario == '' || $pass == '') {
     <button type="submit">Iniciar sesión</button>
   </form>
   <div id="mensajeForm">
-    <?php echo $mensa; ?>
+   
   </div> -->
 </body>
 

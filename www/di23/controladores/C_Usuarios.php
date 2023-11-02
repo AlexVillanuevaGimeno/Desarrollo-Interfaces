@@ -11,17 +11,8 @@
         }
 
         public function validarUsuario($filtros){
-            // $usuario='';
-            // $pass='srfdvsvwrt';
-            // extract($datos);
-            // $valido='N';
-            // if($usuario=='fran' && $pass== '123'){
-            //     $_SESSION['usuario']=$usuario;
-            //     $valido='S';
-            // }
             $valido='N';
             $usuario=$this->modelo->buscarUsuarios($filtros);
-
             if (!empty($usuario)) {
                 $valido='S';
                 $_SESSION['usuario'] = $usuario[0]['login'];
