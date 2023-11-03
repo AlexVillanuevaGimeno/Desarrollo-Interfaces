@@ -38,13 +38,11 @@ class M_Usuarios extends Modelo
             }
             //  echo $c_texto;
             if ( $c_texto !='T') {
-    
                 $SQL .= " AND sexo = '$c_texto'";
             }
             // echo $d_texto;
             // var_dump ($filtros);
             if ($d_texto != '') {
-    
                 $SQL .= " AND activo = '$d_texto'";
             }
         }
