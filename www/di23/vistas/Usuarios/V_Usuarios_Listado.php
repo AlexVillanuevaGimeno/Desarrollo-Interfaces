@@ -15,19 +15,24 @@
         echo '<tbody>';
 
 
-        function returnGenero($fila){
+        function returnGenero($fila) {
             if ($fila['sexo'] == 'H') {
-                return "Hombre";
-             }elseif($fila['sexo'] == 'M'){
-                 return"Mujer";
+                return "Hombre" ;
+                // <img src='img/IconoHombre.png' alt='IconoGeneroHombre'>";
+            } elseif ($fila['sexo'] == 'M') {
+                return "Mujer";
+                 // <img src='img/IconoMujer.png' alt='IconoGeneroMujer'>";
+            }
         }
-    }
+        
 
         function returnActivos($fila){
             if($fila['activo'] == 'S'){
                 return "Activo";
+                // <img src='img/check.png' alt='Activo'>";
             }elseif($fila['activo'] == 'N'){
                 return"Inactivo";
+                // <img src='img/x.png' alt='Inactivo'>";
             }
         }
             

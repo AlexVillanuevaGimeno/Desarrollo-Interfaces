@@ -66,10 +66,30 @@ body{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     font-size: large;
+    text-shadow: 0 0 16px rgba(255, 247, 103, 1), 0 0 16px rgba(255, 247, 103, 1);
 }
 input{
     background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) ;
 }
+
+#b_texto::placeholder {
+    color: black;
+}
+
+input[type="checkbox"] {
+    color: #b88d37;
+}
+
+input[type="checkbox"]:focus {
+    outline: 2px solid #fff767;
+}
+
+
+
+select{
+    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) ;
+}
+
 #btnBuscar{
     background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
 }
