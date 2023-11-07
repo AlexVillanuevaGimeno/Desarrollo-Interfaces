@@ -1,5 +1,9 @@
 <?php
-echo '<div id="bloqueTxt"><a id="txtBusqueda">Busqueda de Usuarios</a></div>';
+echo '<div id="bloqueTxt">
+        <p class="fw-bolder fst-italic fs-3" id="txtBusqueda">
+        Busqueda de Usuarios
+        </p>
+    </div>';
 
 
 
@@ -24,20 +28,22 @@ echo '<div id="bloqueTxt"><a id="txtBusqueda">Busqueda de Usuarios</a></div>';
 
 <form id="formularioCrear" name="formularioCrear">
     <div id="camposUsuario" style="display: none;">
+        <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Inserta un nuevo usuario</p>
         <input type="text" id="nombre" name="nombre" placeholder="Nombre">
         <input type="text" id="apellido" name="apellido_1" placeholder="Apellido 1">
         <input type="text" id="apellido" name="apellido_2" placeholder="Apellido 2">
-        <input type="text" id="email" name="email" placeholder="Email">
         <select name="sexo">
             <option value="H">Hombre</option>
             <option value="M">Mujer</option>
         </select>
-        <input type="text" id="username" name="username" placeholder="Nombre usuario">
+        <input type="text" id="email" name="email" placeholder="Email">
+        <input type="text" id="username" name="login" placeholder="Nombre usuario">
         <input type="text" id="password" name="password" placeholder="Contrasena">
 
         <label for="d_texto">Actividad
             <input type="checkbox" id="activo" name="activo" value="S">
         </label>
+        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="insertarUsuario()">Insertar Usuario</button>
     </div>
 </form>
 
