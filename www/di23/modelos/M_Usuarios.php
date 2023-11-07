@@ -54,6 +54,39 @@ class M_Usuarios extends Modelo
         return $usuarios;
     }
 
+    public function crearUsuario($parameters = array()){
+        $nombre= "";
+        $apellido_1= "";
+        $apellido_2= "";
+        $email = "";
+        $sexo= "";
+        $login = "";
+        $password= "";
+        $activo= "";
+        extract($parameters);
+
+        $SQL= "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)"
+
+        if($nombre!= "" &&
+        $apellido_1!= "" &&
+        $apellido_2!= ""&&
+        $sexo!= ""&&
+        $email != ""&&
+        $login != ""&&
+        $password!= ""&&
+        $activo!= "") {
+            $nombre = addslashes($nombre);
+            $apellido_1 = addslashes($apellido_1);
+            $apellido_2 = addslashes($apellido_2);
+            $sexo = addslashes($sexo);
+            $email =addslashes($email);
+            $login = addslashes($login);
+            $password = addslashes($password);
+
+            $SQL .= "VALUES ('$nombre', '$apellido_1', '$apellido_2', '$sexo', NOW(), '$email', '$login', '$password', '$activo' )";
+    }
+}
+
     // public function buscarUsuariosMayores($filtros=array()){
     //     $c_texto='';
     //     $usuario='';
@@ -78,3 +111,4 @@ class M_Usuarios extends Modelo
     // }
 
 }
+

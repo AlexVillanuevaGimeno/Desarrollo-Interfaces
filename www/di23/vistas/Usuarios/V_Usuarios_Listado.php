@@ -1,7 +1,7 @@
 <?php
     $usuarios= $datos['usuarios'];
 
-    echo '<table id="tablaListado">';
+    echo '<table id="tablaListado" class="table table-dark table-striped">';
         echo '<thead>';
         echo '<tr>';
         echo '<th>Apellido</th>';
@@ -10,6 +10,7 @@
         echo '<th>Sexo</th>';
         echo '<th>Telefono</th>';
         echo '<th>Actividad</th>';
+        echo '<th>Actualizar user</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -56,6 +57,8 @@
             echo '<td>' . returnGenero($fila) . '</td>';
             echo '<td>' . $fila['movil'] . '</td>';
             echo '<td>' . returnActivos($fila) . '</td>';
+            echo '<td><button type="button">Actualizar</button></td>';
+            // onclick="actualizarMovil()
             echo '</tr>';
         }
 

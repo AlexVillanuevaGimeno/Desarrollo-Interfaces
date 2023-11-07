@@ -17,3 +17,12 @@ function buscarUsuarios(){
             console.log("Error al realizar la peticion.", err.message);
         });
 }
+
+function mostrarCampos() {
+    var camposUsuario = document.getElementById("camposUsuario");
+    if (camposUsuario.style.display === "none") {
+      camposUsuario.style.display = "block";
+    } else {
+      camposUsuario.style.display = "none";
+    }
+  }
