@@ -29,11 +29,12 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
         }
-        // public function insertarUsuario($parameters=array()){
-        //     $usuarios=$this->modelo->insertarUsuario($parameters);
-        //     //echo json_encode($usuarios);
-        //     Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
-        //                     array('usuarios'=>$usuarios));
-        // }
+
+ 
+        public function insertarUsuario($parameters=array()){
+            $usuarios=$this->modelo->insertarUsuario($parameters);
+            //echo json_encode($usuarios);
+            
+        }
     }
 ?>

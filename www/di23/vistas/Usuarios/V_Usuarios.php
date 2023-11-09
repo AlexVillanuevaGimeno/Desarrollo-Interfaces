@@ -26,6 +26,7 @@ echo '<div id="bloqueTxt">
     <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCampos()">Crear nuevo usuario</button>
 </form>
 
+
 <form id="formularioCrear" name="formularioCrear">
     <div id="camposUsuario" style="display: none;">
         <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Inserta un nuevo usuario</p>

@@ -34,7 +34,9 @@
                 die('Error insertar BD: '.$SQL);
                 return '';
             }else{
+                // echo $this->conexion->insert_id;
                 return $this->conexion->insert_id;
+
             }
         }
 

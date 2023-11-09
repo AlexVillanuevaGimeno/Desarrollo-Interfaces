@@ -10,7 +10,6 @@ function buscarUsuarios(){
             }
         })
         .then(vista => {
-
             document.getElementById("capaResultadosBusqueda").innerHTML = vista;
         })
         .catch(err => {
@@ -30,8 +29,7 @@ function insertarUsuario(){
             }
         })
         .then(vista => {
-
-            document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+            buscarUsuarios();
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);

@@ -52,60 +52,53 @@ class M_Usuarios extends Modelo
         // echo $SQL;
         $usuarios = $this->DAO->consultar($SQL);
         return $usuarios;
+
     }
 
-//     public function insertarUsuario($parameters = array()){
-//         $nombre= "";
-//         $apellido_1= "";
-//         $apellido_2= "";
-//         $email = "";
-//         $sexo= "";
-//         $login = "";
-//         $password= "";
-//         $activo= "";
-//         extract($parameters);
+    public function insertarUsuario($parameters = array()){
+        $nombre= "";
+        $apellido_1= "";
+        $apellido_2= "";
+        $email = "";
+        $sexo= "";
+        $login = "";
+        $password= "";
+        $activo= "";
+        extract($parameters);
 
-//         $SQL= "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
+        $SQL= "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
 
-//         if($nombre!= "" && $apellido_1!= "" && $apellido_2!= ""&& $sexo!= ""&& $email != ""&& $login != ""&& $password!= ""&& $activo!= "") {
-//             $nombre = addslashes($nombre);
-//             $apellido_1 = addslashes($apellido_1);
-//             $apellido_2 = addslashes($apellido_2);
-//             $sexo = addslashes($sexo);
-//             $email =addslashes($email);
-//             $login = addslashes($login);
-//             $password = addslashes($password);
-//             $activo = addslashes($activo);
+        if(
+            $nombre!= "" &&
+            //  $apellido_1!= "" && $apellido_2!= ""&& $sexo!= ""&& $email != ""&&
+         $login != ""&& $password!= "") {
+            $nombre = addslashes($nombre);
+            $apellido_1 = addslashes($apellido_1);
+            $apellido_2 = addslashes($apellido_2);
+            $sexo = addslashes($sexo);
+            $email =addslashes($email);
+            $login = addslashes($login);
+            $password = ($password);
+            if ($activo!= "") {
+                $activo = $activo;
+            }else{
+                $activo = 'N';
+            }
 
-//             $SQL .= "VALUES ('$nombre', '$apellido_1', '$apellido_2', '$sexo', NOW(), '$email', '$login', '$password', '$activo' )";
-//     }
-//     $usuarios = $this->DAO->insertar($SQL);
-//         return $usuarios;
+            
+            $SQL .= "VALUES ('$nombre', '$apellido_1', '$apellido_2', '$sexo', NOW(), '$email', '$login', md5('$password'), '$activo' )";
+            // echo $SQL;
+    }
+    $usuarios = $this->DAO->insertar($SQL);
+        return $usuarios;
 
-// }
-
-    // public function buscarUsuariosMayores($filtros=array()){
-    //     $c_texto='';
-    //     $usuario='';
-    //     $pass='';
-    //     extract($filtros);
-
-    //     $SQL = "SELECT * FROM usuarios WHERE sexo = 'H'";
+}
 
 
-    //     if ($usuario!='' && $pass!='') {
-    //         $usuario = addslashes($usuario);
-    //         $pass = addslashes($pass);
-    //         $SQL.=" AND login = '$usuario' AND pass = MD5('$pass')";
-    //     }
-    //     if($c_texto!=''){
-    //         $dTexto=explode(' ', $c_texto);
-    //         $SQL.=" AND sexo = '$c_texto'";
-    //     }
-    //     // echo $SQL;
-    //     $usuarios=$this->DAO->consultar($SQL);
-    //     return $usuarios;
-    // }
+
+
+
+
 
 }
 
