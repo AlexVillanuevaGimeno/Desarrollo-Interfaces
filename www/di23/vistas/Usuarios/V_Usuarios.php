@@ -48,5 +48,19 @@ echo '<div id="bloqueTxt">
     </div>
 </form>
 
+
+<form id="formularioUpdatear" name="formularioUpdatear">
+    <div id="camposUsuario" style="display: none;">
+        <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Actualizame el usuario</p>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+        <input type="text" id="apellido" name="apellido_1" placeholder="Apellido 1">
+        <input type="text" id="apellido" name="apellido_2" placeholder="Apellido 2">
+        <input type="text" id="email" name="email" placeholder="Email">
+        <input type="text" id="username" name="login" placeholder="Nombre usuario">
+        <input type="text" id="password" name="password" placeholder="Contrasena">
+        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="updatearUsuario()">Actualizar</button>
+    </div>
+</form>
+
 <div id="capaResultadosBusqueda">
 </div>

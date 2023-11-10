@@ -77,7 +77,7 @@
             echo '<td>' . returnGenero($fila). '</td>';
             echo '<td>' . returnNoEspecificados($fila['movil']) . '</td>';
             echo '<td>' . returnActivos($fila) . '</td>';
-            echo '<td><button type="button">Actualizar</button></td>';
+            echo '<td><button id="btnUpdatear" class="btn btn-primary" onclick="">Actualizar</button></td>';
             // onclick="actualizarMovil()
             echo '</tr>';
         }

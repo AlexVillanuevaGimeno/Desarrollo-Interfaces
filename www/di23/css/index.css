@@ -114,8 +114,8 @@ button{
     border-color: #000 !important;
     background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
 }
-button:focus{
-    box-shadow: 0 0 7px black !important;
+#btnBuscar:focus , #btnCreateUser:focus{
+    box-shadow: 0 0 7px black ;
 }
 #tablaListado{
     border: solid black 1px;
