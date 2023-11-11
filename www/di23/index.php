@@ -22,10 +22,10 @@
     <body>
         <section id="secEncabezadoPagina" class="container-fluid">
             <div class="row">
-                <div class="divLogotipo col-lg-2 col-md-2 col-sm-10">
-                    <img src="img/RiftRoyaltyLogo.png">
+                <div class="divLogotipo col-lg-2 col-md-2 col-sm-10" id="imgLogo">
+                    <img src="img/RiftRoyaltyLogo.png" >
                 </div>
-                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block" id="miNombre">Alejandro Villanueva</div>
+                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block text-center text-capitalize fs-1 fw-bolder fst-italic" id="miNombre">Alejandro Villanueva</div>
                 <div class="divLog col-lg-2 col-md-2 col-sm-2 " id="logoLogin">
                     <?php
                         if(isset($_SESSION['usuario'])){
@@ -50,7 +50,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <div class="collapse navbar-collapse fs-5 fw-lighter" id="navbarsExample04">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="index.php">Home</a>

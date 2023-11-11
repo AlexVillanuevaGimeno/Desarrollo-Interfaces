@@ -2,7 +2,7 @@
     $usuarios= $datos['usuarios'];
 
     echo '<table id="tablaListado" class="table table-dark table-striped">';
-        echo '<thead>';
+        echo '<thead class="text-capitalize fs-6 fw-bolder">';
         echo '<tr>';
         echo '<th>Apellido</th>';
         echo '<th>Nombre</th>';
@@ -77,8 +77,7 @@
             echo '<td>' . returnGenero($fila). '</td>';
             echo '<td>' . returnNoEspecificados($fila['movil']) . '</td>';
             echo '<td>' . returnActivos($fila) . '</td>';
-            echo '<td><button id="btnUpdatear" class="btn btn-primary" onclick="">Actualizar</button></td>';
-            // onclick="actualizarMovil()
+            echo '<td><button id="btnCamposUpdate" class="btn btn-primary" onclick="mostrarCamposUpdate()">Actualizar</button></td>';
             echo '</tr>';
         }
 

@@ -1,98 +1,121 @@
-
-
-html{
-    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) !important;
+html {
+    background: linear-gradient(180deg, #b88d37 0%, #fff767 100%) !important;
     min-height: 100%;
 }
-body{
+
+body {
     background-color: transparent;
     min-height: 100% !important;
 }
 
-.divLogotipo{
+.divLogotipo {
     text-align: left;
 }
 
-.divLogotipo img{
+.divLogotipo img {
     height: 3em;
 }
-.divLog{
+
+.divLog {
     text-align: right;
 }
-.divLog img{
+
+.divLog img {
     height: 2em;
 }
-.divTituloApp{
+
+.divTituloApp {
     text-align: center;
     font-size: 1.5em;
 }
 
-#secEncabezadoPagina{
-    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
+#secEncabezadoPagina {
+    background: linear-gradient(180deg, #fff767 0%, #b88d37 100%);
 }
-#cabeceraApartados{
-    background-color: #b88d37
+
+#cabeceraApartados {
+    background-color: #b88d37;
+    font-family: Georgia, 'Times New Roman', Times, serif ;
 }
-#miNombre{
+
+#imgLogo {
     display: flex !important;
     align-items: center;
-    justify-content: center;
 }
-#logoLogin{
+
+#miNombre {
+    display: flex !important;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+#logoLogin {
     display: flex;
     align-items: center;
     justify-content: right;
 }
-#logOut{
-    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
+
+#logOut {
+    background: linear-gradient(180deg, #fff767 0%, #b88d37 100%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
-#secMenuPagina{
+
+#secMenuPagina {
     padding-left: unset;
     padding-right: unset;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3), 0 0 16px rgba(0, 0, 0, 0.5);
 
 }
-#bloqueContenido{
+
+#bloqueContenido {
     background: transparent;
 }
-#secContenidoPagina{
+
+#secContenidoPagina {
     background: transparent;
 }
-#bloqueTxt{
+
+#bloqueTxt {
     margin-top: 15px;
     margin-bottom: 5px;
 }
-#txtBusqueda{
+
+#txtBusqueda {
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-shadow: 0 0 16px rgba(255, 247, 103, 1), 0 0 16px rgba(255, 247, 103, 1);
 }
 
-#formularioBuscar{
+#formularioBuscar {
     margin-bottom: 15px;
 }
-#formularioBuscar > *{
+
+#formularioBuscar>* {
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
-#txtInsertar{
+#txtInsertar {
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-shadow: 0 0 16px rgba(255, 247, 103, 1), 0 0 16px rgba(255, 247, 103, 1);
 }
-#formularioCrear > *{
+
+#formularioCrear>* {
     margin-right: 10px !important;
 }
-#camposUsuario > *{
+
+#camposUsuario>* {
     margin-right: 15px;
 }
-input{
-    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) ;
+
+input {
+    background: linear-gradient(180deg, #b88d37 0%, #fff767 100%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 input::placeholder {
     color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 input[type="checkbox"] {
@@ -105,25 +128,39 @@ input[type="checkbox"]:focus {
 
 
 
-select{
-    background: linear-gradient(180deg, #b88d37 0%, #fff767   100%) ;
+select {
+    background: linear-gradient(180deg, #b88d37 0%, #fff767 100%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-button{
+button {
     color: #000 !important;
     border-color: #000 !important;
-    background: linear-gradient(180deg, #fff767 0%, #b88d37   100%);
+    background: linear-gradient(180deg, #fff767 0%, #b88d37 100%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
-#btnBuscar:focus , #btnCreateUser:focus{
-    box-shadow: 0 0 7px black ;
+
+#btnBuscar:focus,
+#btnCreateUser:focus,
+#btnInsertar:focus,
+#btnUpdatear:focus {
+    box-shadow: 0 0 7px black;
 }
-#tablaListado{
+
+#btnCamposUpdate:focus {
+    box-shadow: 0 0 10px #fff767, 0 0 15px #b88d37;
+    /* Puedes ajustar los colores y los tamaños según tus preferencias */
+}
+
+#tablaListado {
     border: solid black 1px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.9);
     width: 100%;
     margin-top: 15px;
-    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
+
 /* #tablaListado th{
     text-align: center !important;
 
@@ -133,6 +170,7 @@ table tr td:nth-child(4),
 table tr th:nth-child(4) {
     text-align: center !important;
 }
+
 table tr td:nth-child(5),
 table tr th:nth-child(5) {
     text-align: right !important;
@@ -150,10 +188,10 @@ table tr th:nth-child(6) {
     padding: 8px;
     text-align: left;
 }
-#capaResultadosBusqueda{
+
+#capaResultadosBusqueda {
     width: 100% !important;
-    height: 650px;
+    height: 600px !important; 
     scroll-behavior: auto;
     overflow: auto;
-    
 }

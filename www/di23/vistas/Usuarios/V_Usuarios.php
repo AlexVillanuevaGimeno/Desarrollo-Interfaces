@@ -23,12 +23,12 @@ echo '<div id="bloqueTxt">
         <input type="checkbox" id="d_texto" name="d_texto" value="S">
     </label>
     <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios()">Buscar</button>
-    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCampos()">Crear nuevo usuario</button>
+    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate()">Crear nuevo usuario</button>
 </form>
 
 
 <form id="formularioCrear" name="formularioCrear">
-    <div id="camposUsuario" style="display: none;">
+    <div id="camposCrear" style="display: none;">
         <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Inserta un nuevo usuario</p>
         <input type="text" id="nombre" name="nombre" placeholder="Nombre">
         <input type="text" id="apellido" name="apellido_1" placeholder="Apellido 1">
@@ -50,15 +50,15 @@ echo '<div id="bloqueTxt">
 
 
 <form id="formularioUpdatear" name="formularioUpdatear">
-    <div id="camposUsuario" style="display: none;">
+    <div id="camposUpdatear" style="display: none;">
         <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Actualizame el usuario</p>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
-        <input type="text" id="apellido" name="apellido_1" placeholder="Apellido 1">
-        <input type="text" id="apellido" name="apellido_2" placeholder="Apellido 2">
-        <input type="text" id="email" name="email" placeholder="Email">
-        <input type="text" id="username" name="login" placeholder="Nombre usuario">
-        <input type="text" id="password" name="password" placeholder="Contrasena">
-        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="updatearUsuario()">Actualizar</button>
+        <input type="text" id="nameUpdate" name="nameUpdate" placeholder="Nombre">
+        <input type="text" id="apellidoUpdate1" name="apellidoUpdate1" placeholder="Apellido 1">
+        <input type="text" id="apellidoUpdate2" name="apellidoUpdate2" placeholder="Apellido 2">
+        <input type="text" id="emailUpdate" name="emailUpdate" placeholder="Email">
+        <input type="text" id="loginUpdate" name="loginUpdate" placeholder="Nombre usuario">
+        <input type="text" id="passwordUpdate" name="passwordUpdate" placeholder="Contrasena">
+        <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="">Actualizar</button>
     </div>
 </form>
 

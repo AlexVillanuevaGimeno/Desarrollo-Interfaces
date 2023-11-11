@@ -94,6 +94,22 @@ class M_Usuarios extends Modelo
 
 }
 
+public function updatearUsuario(){
+        $nameUpdate= "";
+        $apellidoUpdate1= "";
+        $apellidoUpdate2= "";
+        $emailUpdate = "";    
+        $loginUpdate = "";
+        $passwordUpdate= "";
+        extract($parameters);
+
+        $SQL = "UPDATE usuarios SET ";
+        $SQL .= " nombre = '$nombre', apellido_1 = '$apellido_1', apellido_2 = '$apellido_2',";
+        $SQL .= " sexo = '$sexo', mail = '$email', pass = md5('$password'),";
+
+
+}
+
 
 
 
