@@ -22,8 +22,8 @@ echo '<div id="bloqueTxt">
     <label for="d_texto" oninput="buscarUsuarios()">Actividad
         <input type="checkbox" id="d_texto" name="d_texto" value="S">
     </label>
-    <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios()">Buscar</button>
-    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate()">Crear nuevo usuario</button>
+    <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios(); tablaAltura();">Buscar</button>
+    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate(); tablaAltura();">Crear nuevo usuario</button>
 </form>
 
 

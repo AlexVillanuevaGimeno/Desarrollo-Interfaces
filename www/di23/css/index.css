@@ -191,7 +191,7 @@ table tr th:nth-child(6) {
 
 #capaResultadosBusqueda {
     width: 100% !important;
-    height: 600px !important; 
+    /* height: 600px !important;  */
     scroll-behavior: auto;
     overflow: auto;
 }

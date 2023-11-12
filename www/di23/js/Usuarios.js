@@ -57,7 +57,7 @@ function updatearUsuario(){
 
 function mostrarCamposCreate() {
     var camposCreate = document.getElementById("camposCrear");
-    var camposUpdate = document.getElementById("camposUpdatear")
+    var camposUpdate = document.getElementById("camposUpdatear");
     if (camposCreate.style.display === "none") {
         if (camposUpdate.style.display === "block") {
             camposUpdate.style.display ="none";
@@ -73,7 +73,7 @@ function mostrarCamposCreate() {
 
   function mostrarCamposUpdate() {
     var camposCreate = document.getElementById("camposCrear");
-    var camposUpdate = document.getElementById("camposUpdatear")
+    var camposUpdate = document.getElementById("camposUpdatear");
     if (camposUpdate.style.display === "none") {
         if (camposCreate.style.display === "block") {
             camposCreate.style.display ="none";
@@ -87,24 +87,43 @@ function mostrarCamposCreate() {
     
   }
 
-//   $(document).ready(function() {
-//     $('.btnUpdatear').on('click', function() {
-//       var fila = $(this).closest('tr');
-//       var login = fila.data('login');
+/*
+FUNCION PARA DEJAR LA TABLA ESTATICA 
+AUNQUE SE AÑADAN LOS CAMPOS DE INSERTO O UPDATE
+*/
+  function tablaAltura() {
+    var camposCreate = document.getElementById("camposCrear");
+    var camposUpdate = document.getElementById("camposUpdatear");
+    var resultados = document.getElementById("capaResultadosBusqueda");
+
+    // Obtener los estilos computados
+    var estilosCreate = window.getComputedStyle(camposCreate);
+    var estilosUpdate = window.getComputedStyle(camposUpdate);
+
+    // Verificar si al menos uno de los campos está visible
+    if (estilosCreate.display !== "none" || estilosUpdate.display !== "none") {
+        console.log("Al menos uno de los campos está visible");
+        resultados.style.height = "605px";
+    } else {
+        console.log("Ambos campos están ocultos");
+        resultados.style.height = "700px";
+    }
+}
+
+//   function tablaAltura() {
+//     var camposCreate = document.getElementById("camposCrear");
+//     var camposUpdate = document.getElementById("camposUpdatear");
+//     var resultados = document.getElementById("capaResultadosBusqueda");
+
+//     if (camposCreate.style.display === "block" || camposUpdate.style.display === "block") {
+//         console.log(camposCreate + camposUpdate + "no existen campos")
+//         resultados.style.height = "625px";
+//     } else {
+//         console.log(camposCreate + camposUpdate + "si existen campos")
+//         resultados.style.height = "600px";
+//     }
+// }
+
   
-//       // Puedes realizar otras acciones aquí, como mostrar un formulario de actualización
-//       // o enviar una solicitud Ajax al servidor para realizar la actualización
-//       // Asegúrate de incluir el valor de login al llamar a la función PHP
-//       miFuncionDeActualizacion(login);
-//     });
-//   });
-  
-//   function miFuncionDeActualizacion(login) {
-//     // Implementa las acciones que deseas realizar con el valor de login
-//     // Por ejemplo, puedes mostrar un formulario de actualización o enviar una solicitud al servidor
-//     console.log('Login a actualizar:', login);
-  
-//     // Llama a tu función PHP aquí, pasando el valor de login como parámetro
-//     // Ejemplo: $.post('tuscript.php', { login: login }, function(response) { console.log(response); });
-//   }
+
   
