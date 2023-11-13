@@ -36,5 +36,11 @@
             //echo json_encode($usuarios);
             
         }
+
+        public function updatearUsuario($parameters=array()){
+            $usuarios=$this->modelo->updatearUsuario($parameters);
+            // echo json_encode($usuarios);
+        }
+        
     }
 ?>

@@ -8,6 +8,7 @@ echo '<div id="bloqueTxt">
 
 
 ?>
+<!--CAMPOS FORMULARIO BUSCAR-->
 <form id="formularioBuscar" name="formularioBuscar" onkeydown="return event.key != 'Enter';">
     <label for="b_texto" oninput="buscarUsuarios()">
         <input type="text" id="b_texto" name="b_texto" placeholder="Nombre">
@@ -26,7 +27,7 @@ echo '<div id="bloqueTxt">
     <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate(); tablaAltura();">Crear nuevo usuario</button>
 </form>
 
-
+<!--CAMPOS FORMULARIO CREAR-->
 <form id="formularioCrear" name="formularioCrear">
     <div id="camposCrear" style="display: none;">
         <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Inserta un nuevo usuario</p>
@@ -48,7 +49,7 @@ echo '<div id="bloqueTxt">
     </div>
 </form>
 
-
+<!--CAMPOS FORMULARIO UPDATEAR-->
 <form id="formularioUpdatear" name="formularioUpdatear">
     <div id="camposUpdatear" style="display: none;">
         <p class="fw-bolder fst-italic fs-3" id="txtInsertar">Actualizame el usuario</p>
