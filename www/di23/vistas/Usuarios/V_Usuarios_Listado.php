@@ -4,6 +4,7 @@
     echo '<table id="tablaListado" class="table table-dark table-striped">';
         echo '<thead class="text-capitalize fs-6 fw-bolder">';
         echo '<tr>';
+        // echo '<th>Id</th>';
         echo '<th>Apellido</th>';
         echo '<th>Nombre</th>';
         echo '<th>Usuario</th>';
@@ -31,8 +32,6 @@
             }
             
         }
-        
-
         function returnActivos($fila){
             if ($fila['activo'] =='') {
                 return "No especificado";
@@ -45,8 +44,7 @@
                     // <img src='img/x.png' alt='Inactivo'>";
                 }
             }
-        }
-            
+        }      
         function returnNoEspecificados($fila){
             if($fila == ''){
                 return "No especificado";
@@ -70,6 +68,7 @@
 
         foreach ($usuarios as $fila) {
             echo '<tr>';
+            // echo '<td>' . $fila['id_Usuario'] . '</td>';
             echo '<td>' . returnNoEspecificados($fila['apellido_1']) . ' &nbsp&nbsp&nbsp&nbsp ' . returnNoEspecificados($fila['apellido_2']) . '</td>';
             echo '<td>' . returnNoEspecificados($fila['nombre']). '</td>';
             echo '<td>' . returnNoEspecificados($fila['login']) . '</td>';

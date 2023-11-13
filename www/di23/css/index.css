@@ -46,7 +46,8 @@ body {
 #miNombre {
     display: flex !important;
     justify-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #000;
 }
 
 #logoLogin {
@@ -108,6 +109,9 @@ body {
     margin-right: 15px;
 }
 
+label{
+    font-weight: bolder;
+}
 input {
     background: linear-gradient(180deg, #b88d37 0%, #fff767 100%);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -116,6 +120,7 @@ input {
 input::placeholder {
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
 }
 
 input[type="checkbox"] {
@@ -131,6 +136,8 @@ input[type="checkbox"]:focus {
 select {
     background: linear-gradient(180deg, #b88d37 0%, #fff767 100%);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    border-color: #000 !important;
 }
 
 button {
@@ -138,6 +145,7 @@ button {
     border-color: #000 !important;
     background: linear-gradient(180deg, #fff767 0%, #b88d37 100%);
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder !important;
 }
 
 #btnBuscar:focus,

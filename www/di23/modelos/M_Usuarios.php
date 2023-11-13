@@ -94,7 +94,8 @@ class M_Usuarios extends Modelo
 
 }
 
-public function updatearUsuario(){
+
+public function updatearUsuario($parameters = array()){
         $nameUpdate= "";
         $apellidoUpdate1= "";
         $apellidoUpdate2= "";
@@ -109,12 +110,6 @@ public function updatearUsuario(){
 
 
 }
-
-
-
-
-
-
 
 }
 
