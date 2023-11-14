@@ -160,6 +160,13 @@ button {
     /* Puedes ajustar los colores y los tamaños según tus preferencias */
 }
 
+#bloqueTabla{
+    width: 100% !important;
+    /* height: 600px !important;  */
+    scroll-behavior: auto;
+    overflow: auto;
+}
+
 #tablaListado {
     border: solid black 1px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.9);
@@ -173,21 +180,38 @@ button {
     text-align: center !important;
 
 } */
+table tr th,
+table tr td{
+    text-align: center !important;
+}
+td img{
+    width: 35px;
+    height: 35px;
+}
 
-table tr td:nth-child(4),
-table tr th:nth-child(4) {
+#imgMasc{
+    background-color: aqua;
+}
+#imgFem{
+    background-color: pink;
+}
+/* table tr td:nth-child(1) {
+    text-align: center !important;
+}
+table tr td:nth-child(2) {
+    text-align: left ;
+}
+
+table tr td:nth-child(4) {
     text-align: center !important;
 }
 
-table tr td:nth-child(5),
-table tr th:nth-child(5) {
+table tr td:nth-child(5) {
+    text-align: center !important;
+}
+table tr td:nth-child(6) {
     text-align: right !important;
-}
-
-table tr td:nth-child(6),
-table tr th:nth-child(6) {
-    text-align: center !important;
-}
+} */
 
 #tablaListado th,
 #tablaListado td {
@@ -197,9 +221,6 @@ table tr th:nth-child(6) {
     text-align: left;
 }
 
-#capaResultadosBusqueda {
-    width: 100% !important;
-    /* height: 600px !important;  */
-    scroll-behavior: auto;
-    overflow: auto;
-}
+/* #capaResultadosBusqueda {
+    
+} */

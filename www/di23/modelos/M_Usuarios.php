@@ -12,9 +12,10 @@ class M_Usuarios extends Modelo
     }
 
     public function buscarUsuarios($filtros = array()){
-        $d_texto='';
-        $c_texto='';
-        $b_texto = '';
+        $id_Usuario = '';
+        $activoBusqueda='';
+        $sexoBusqueda='';
+        $nombreBusqueda = '';
         $usuario = '';
         $pass = '';
         extract($filtros);
@@ -26,8 +27,16 @@ class M_Usuarios extends Modelo
             $pass = addslashes($pass);
             $SQL .= " AND login = '$usuario' AND pass = MD5('$pass')";
         }else{
-            if ($b_texto != '') {
-                $aTexto = explode(' ', $b_texto);
+            if ($id_Usuario!='') {
+                $aTexto = explode(' ', $id_Usuario);
+                $SQL .= " AND (1=2 ";
+                foreach ($aTexto as $palabra) {
+                    $SQL .= " OR id_Usuario LIKE $palabra ";
+                }
+                $SQL .= " ) ";
+            }
+            if ($nombreBusqueda != '') {
+                $aTexto = explode(' ', $nombreBusqueda);
                 $SQL .= " AND (1=2 ";
                 foreach ($aTexto as $palabra) {
                     $SQL .= " OR apellido_1 LIKE '%$palabra%' ";
@@ -37,13 +46,13 @@ class M_Usuarios extends Modelo
                 $SQL .= " ) ";
             }
             //  echo $c_texto;
-            if ( $c_texto !='T') {
-                $SQL .= " AND sexo = '$c_texto'";
+            if ( $sexoBusqueda !='T' && $sexoBusqueda !="") {
+                $SQL .= " AND sexo = '$sexoBusqueda'";
             }
             // echo $d_texto;
             // var_dump ($filtros);
-            if ($d_texto != '') {
-                $SQL .= " AND activo = '$d_texto'";
+            if ($activoBusqueda != '') {
+                $SQL .= " AND activo = '$activoBusqueda'";
             }
         }
         
@@ -96,18 +105,21 @@ class M_Usuarios extends Modelo
 
 
 public function updatearUsuario($parameters = array()){
+        $id_UsuarioGuardada="";
         $nameUpdate= "";
         $apellidoUpdate1= "";
         $apellidoUpdate2= "";
+        $sexoUpdate="";
         $emailUpdate = "";    
         $loginUpdate = "";
         $passwordUpdate= "";
         extract($parameters);
 
         $SQL = "UPDATE usuarios SET ";
-        $SQL .= " nombre = '$nombre', apellido_1 = '$apellido_1', apellido_2 = '$apellido_2',";
-        $SQL .= " sexo = '$sexo', mail = '$email', pass = md5('$password'),";
-
+        $SQL .= " nombre = '$nameUpdate', apellido_1 = '$apellidoUpdate1', apellido_2 = '$apellidoUpdate2', sexo = '$sexoUpdate', ";
+        $SQL .= " mail = '$emailUpdate', login = '$loginUpdate', pass = md5('$passwordUpdate') WHERE id_Usuario = $id_UsuarioGuardada";
+        // echo $SQL;
+        $this->DAO->actualizar($SQL);
 
 }
 

@@ -1,7 +1,16 @@
-function buscarUsuarios(){
+
+var id_UsuarioGuardada;
+
+
+function buscarUsuarios(id_Usuario){
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=buscarUsuarios";
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
+    if (id_Usuario != null) {
+        parametros += "&id_Usuario=" + id_Usuario;
+        console.log("parametros: " + parametros)
+    }
+
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
@@ -11,6 +20,10 @@ function buscarUsuarios(){
         })
         .then(vista => {
             document.getElementById("capaResultadosBusqueda").innerHTML = vista;
+            tablaAltura();
+            // if (id_Usuario != null) {
+                
+            // }
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
@@ -36,9 +49,16 @@ function insertarUsuario(){
         });
 }
 
-function updatearUsuario(){
+ function guardarIdUsuario(id_Usuario){
+    buscarUsuarios(id_Usuario);
+    id_UsuarioGuardada = id_Usuario;
+    console.log("Estoy guardando el id (funcion) " + id_Usuario);
+}
+
+function updatearUsuario (){
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=updatearUsuario";
+    parametros += "&id_UsuarioGuardada=" + id_UsuarioGuardada;
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioUpdatear"))).toString();
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
@@ -49,6 +69,7 @@ function updatearUsuario(){
         })
         .then(vista => {
             buscarUsuarios();
+            id_UsuarioGuardada = 0;
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
@@ -94,7 +115,7 @@ AUNQUE SE AÑADAN LOS CAMPOS DE INSERTO O UPDATE
   function tablaAltura() {
     var camposCreate = document.getElementById("camposCrear");
     var camposUpdate = document.getElementById("camposUpdatear");
-    var resultados = document.getElementById("capaResultadosBusqueda");
+    var resultados = document.getElementById("bloqueTabla");
 
     // Obtener los estilos computados
     var estilosCreate = window.getComputedStyle(camposCreate);
