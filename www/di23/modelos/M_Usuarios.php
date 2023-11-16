@@ -11,10 +11,11 @@ class M_Usuarios extends Modelo
         $this->DAO = new DAO();
     }
 
-    public function buscarUsuarios($filtros = array()){
+    public function buscarUsuarios($filtros = array())
+    {
         $id_Usuario = '';
-        $activoBusqueda='';
-        $sexoBusqueda='';
+        $activoBusqueda = '';
+        $sexoBusqueda = '';
         $nombreBusqueda = '';
         $usuario = '';
         $pass = '';
@@ -26,8 +27,8 @@ class M_Usuarios extends Modelo
             $usuario = addslashes($usuario);
             $pass = addslashes($pass);
             $SQL .= " AND login = '$usuario' AND pass = MD5('$pass')";
-        }else{
-            if ($id_Usuario!='') {
+        } else {
+            if ($id_Usuario != '') {
                 $aTexto = explode(' ', $id_Usuario);
                 $SQL .= " AND (1=2 ";
                 foreach ($aTexto as $palabra) {
@@ -46,7 +47,7 @@ class M_Usuarios extends Modelo
                 $SQL .= " ) ";
             }
             //  echo $c_texto;
-            if ( $sexoBusqueda !='T' && $sexoBusqueda !="") {
+            if ($sexoBusqueda != 'T' && $sexoBusqueda != "") {
                 $SQL .= " AND sexo = '$sexoBusqueda'";
             }
             // echo $d_texto;
@@ -55,73 +56,93 @@ class M_Usuarios extends Modelo
                 $SQL .= " AND activo = '$activoBusqueda'";
             }
         }
-        
+
 
 
         // echo $SQL;
         $usuarios = $this->DAO->consultar($SQL);
         return $usuarios;
-
     }
 
-    public function insertarUsuario($parameters = array()){
-        $nombre= "";
-        $apellido_1= "";
-        $apellido_2= "";
+    public function insertarUsuario($parameters = array())
+    {
+        $nombre = "";
+        $apellido_1 = "";
+        $apellido_2 = "";
         $email = "";
-        $sexo= "";
+        $sexo = "";
         $login = "";
-        $password= "";
-        $activo= "";
+        $password = "";
+        $activo = "";
         extract($parameters);
 
-        $SQL= "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
+        $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
 
-        if(
-            $nombre!= "" &&
+        if (
+            $nombre != "" &&
             //  $apellido_1!= "" && $apellido_2!= ""&& $sexo!= ""&& $email != ""&&
-         $login != ""&& $password!= "") {
+            $login != "" && $password != ""
+        ) {
             $nombre = addslashes($nombre);
             $apellido_1 = addslashes($apellido_1);
             $apellido_2 = addslashes($apellido_2);
             $sexo = addslashes($sexo);
-            $email =addslashes($email);
+            $email = addslashes($email);
             $login = addslashes($login);
             $password = ($password);
-            if ($activo!= "") {
+            if ($activo != "") {
                 $activo = $activo;
-            }else{
+            } else {
                 $activo = 'N';
             }
 
-            
+
             $SQL .= "VALUES ('$nombre', '$apellido_1', '$apellido_2', '$sexo', NOW(), '$email', '$login', md5('$password'), '$activo' )";
             // echo $SQL;
-    }
-    $usuarios = $this->DAO->insertar($SQL);
+        }
+        $usuarios = $this->DAO->insertar($SQL);
         return $usuarios;
+    }
 
-}
 
-
-public function updatearUsuario($parameters = array()){
-        $id_UsuarioGuardada="";
-        $nameUpdate= "";
-        $apellidoUpdate1= "";
-        $apellidoUpdate2= "";
-        $sexoUpdate="";
-        $emailUpdate = "";    
+    public function updatearUsuario($parameters = array())
+    {
+        $id_UsuarioGuardada = "";
+        $nameUpdate = "";
+        $apellidoUpdate1 = "";
+        $apellidoUpdate2 = "";
+        $sexoUpdate = "";
+        $emailUpdate = "";
         $loginUpdate = "";
-        $passwordUpdate= "";
+        $telefonoUpdate = "";
         extract($parameters);
-
+        $SQL2  ="";
         $SQL = "UPDATE usuarios SET ";
-        $SQL .= " nombre = '$nameUpdate', apellido_1 = '$apellidoUpdate1', apellido_2 = '$apellidoUpdate2', sexo = '$sexoUpdate', ";
-        $SQL .= " mail = '$emailUpdate', login = '$loginUpdate', pass = md5('$passwordUpdate') WHERE id_Usuario = $id_UsuarioGuardada";
-        // echo $SQL;
+        if ($nameUpdate != "") {
+            $SQL2 .= "nombre = '$nameUpdate' ,";
+        }
+        if ($apellidoUpdate1 != "") {
+            $SQL2 .= "apellido_1 = '$apellidoUpdate1' ,";
+        }
+        if ($apellidoUpdate2 != "") {
+            $SQL2 .= "apellido_2 = '$apellidoUpdate2' ,";
+        }
+        if ($sexoUpdate != "") {
+            $SQL2 .= "sexo = '$sexoUpdate' , ";
+        }
+        if ($emailUpdate !="") {
+            $SQL2 .= "mail = '$emailUpdate' ,";
+        }
+        if ($loginUpdate!="") {
+            $SQL2 .= "login = '$loginUpdate' ,";
+        }
+        if ($telefonoUpdate!="") {
+            $SQL2 .= "movil = $telefonoUpdate ";
+        }
+        $SQLCamposSinComa = substr($SQL2, 0, -2);
+        $SQL .= $SQLCamposSinComa;
+        $SQL .= "WHERE id_Usuario = $id_UsuarioGuardada";
+        echo $SQL;
         $this->DAO->actualizar($SQL);
-
+    }
 }
-
-}
-

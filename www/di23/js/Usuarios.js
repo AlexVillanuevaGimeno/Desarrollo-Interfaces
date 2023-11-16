@@ -70,6 +70,7 @@ function updatearUsuario (){
         .then(vista => {
             buscarUsuarios();
             id_UsuarioGuardada = 0;
+            mostrarCamposUpdate();
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
@@ -130,7 +131,6 @@ AUNQUE SE AÑADAN LOS CAMPOS DE INSERTO O UPDATE
         resultados.style.height = "700px";
     }
 }
-
 //   function tablaAltura() {
 //     var camposCreate = document.getElementById("camposCrear");
 //     var camposUpdate = document.getElementById("camposUpdatear");

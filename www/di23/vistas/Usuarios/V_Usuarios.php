@@ -62,7 +62,7 @@ echo '<div id="bloqueTxt">
         </select>
         <input type="email" id="emailUpdate" name="emailUpdate" placeholder="Email">
         <input type="text" id="loginUpdate" name="loginUpdate" placeholder="Nombre usuario">
-        <input type="password" id="passwordUpdate" name="passwordUpdate" placeholder="Contrasena">
+        <input type="tel" id="telefonoUpdate" name="telefonoUpdate" placeholder="Telefono">
         <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="updatearUsuario()">Actualizar</button>
     </div>
 </form>
