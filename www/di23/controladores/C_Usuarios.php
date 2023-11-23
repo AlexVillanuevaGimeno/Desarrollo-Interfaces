@@ -24,6 +24,7 @@
             $usuarios=$this->modelo->buscarUsuarios($filtros);
             //echo json_encode($usuarios);
             Vista::render('vistas/Usuarios/V_Usuarios.php');
+            Vista::render('vistas/V_paginador.php');
             // Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
             //                 array('usuarios'=>$usuarios));
         }
