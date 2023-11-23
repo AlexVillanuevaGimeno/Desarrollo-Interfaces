@@ -115,6 +115,7 @@ class M_Usuarios extends Modelo
         $emailUpdate = "";
         $loginUpdate = "";
         $telefonoUpdate = "";
+        
         extract($parameters);
         $SQL2  ="";
         $SQL = "UPDATE usuarios SET ";
