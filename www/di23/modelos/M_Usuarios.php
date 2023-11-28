@@ -76,13 +76,29 @@ class M_Usuarios extends Modelo
         $activo = "";
         extract($parameters);
 
+        // Validar si ya existe un usuario con el mismo nombre de usuario
+    
+        // if ($loginUpdate != "") {
+        //     $sqlVerificar = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$login'";
+        //     $resultadoVerificar = $this->DAO->consultar($sqlVerificar);
+        //     if ($resultadoVerificacionLogin !== false && $resultadoVerificar instanceof mysqli_result) {
+        //         $filaLogin = $resultadoVerificacionLogin->fetch_assoc();
+        //         if ($filaLogin['total'] > 0) {
+        //             // Ya existe un usuario con el mismo nombre de usuario
+        //             echo "Error: Ya existe un usuario con el mismo nombre de usuario.";
+        //             return;
+        //         }
+        //     } else {
+        //         // Manejar el error
+        //         echo "Error en la consulta de verificación de login.";
+        //         return;
+        //     }
+        // }
+
         $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
 
-        if (
-            $nombre != "" &&
-            //  $apellido_1!= "" && $apellido_2!= ""&& $sexo!= ""&& $email != ""&&
-            $login != "" && $password != ""
-        ) {
+        //compruebo que introduzcas nombre, username(login),password
+        if ($nombre != "" && $login != "" && $password != "") {
             $nombre = addslashes($nombre);
             $apellido_1 = addslashes($apellido_1);
             $apellido_2 = addslashes($apellido_2);
@@ -96,17 +112,20 @@ class M_Usuarios extends Modelo
                 $activo = 'N';
             }
 
-
             $SQL .= "VALUES ('$nombre', '$apellido_1', '$apellido_2', '$sexo', NOW(), '$email', '$login', md5('$password'), '$activo' )";
             // echo $SQL;
+
+            // Realizar la inserción después de la validación
+            $usuarios = $this->DAO->insertar($SQL);
+            return $usuarios;
+        } else {
+            return "Error: Por favor, complete todos los campos obligatorios.";
         }
-        $usuarios = $this->DAO->insertar($SQL);
-        return $usuarios;
     }
 
 
-    public function updatearUsuario($parameters = array())
-    {
+
+    public function updatearUsuario($parameters = array()){
         $id_UsuarioGuardada = "";
         $nameUpdate = "";
         $apellidoUpdate1 = "";
@@ -115,9 +134,54 @@ class M_Usuarios extends Modelo
         $emailUpdate = "";
         $loginUpdate = "";
         $telefonoUpdate = "";
-        
+
         extract($parameters);
-        $SQL2  ="";
+
+        // Validar si ya existe un usuario con el mismo nombre de usuario
+        // if ($loginUpdate != "") {
+        //     $sqlVerificarLogin = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$loginUpdate'";
+        //     echo $sqlVerificarLogin;
+        //     $resultadoVerificacionLogin = $this->DAO->consultar($sqlVerificarLogin);
+        //     echo "Total: " . $resultadoVerificacionLogin[0]['total'];
+            
+
+        //     if ($resultadoVerificacionLogin !== false && $resultadoVerificacionLogin instanceof mysqli_result) {
+        //         $filaLogin = $resultadoVerificacionLogin->fetch_assoc();
+        //         echo $filaLogin;
+
+        //         if ($filaLogin['total'] > 0) {
+        //             // Ya existe un usuario con el mismo nombre de usuario
+        //             echo '<script>alert("Error: Ya existe un usuario con el mismo nombre de usuario.");</script>';
+        //             return;
+        //         }
+        //     } else {
+        //         // Manejar el error
+        //         echo '<script>alert("Error en la consulta de verificación de login.");</script>';
+        //         return;
+        //     }
+        // }
+
+        // Validar si ya existe un usuario con el mismo teléfono
+        // if ($telefonoUpdate != "") {
+        //     $sqlVerificarTelefono = "SELECT COUNT(*) AS total FROM usuarios WHERE movil = $telefonoUpdate AND id_Usuario != $id_UsuarioGuardada";
+        //     $resultadoVerificacionTelefono = $this->DAO->consultar($sqlVerificarTelefono);
+
+        //     if ($resultadoVerificacionTelefono !== false && $resultadoVerificacionTelefono instanceof mysqli_result) {
+        //         $filaTelefono = $resultadoVerificacionTelefono->fetch_assoc();
+
+        //         if ($filaTelefono['total'] > 0) {
+        //             // Ya existe un usuario con el mismo teléfono
+        //             echo '<script>alert("Error: Ya existe un usuario con el mismo teléfono.");</script>';
+        //             return;
+        //         }
+        //     } else {
+        //         // Manejar el error
+        //         echo '<script>alert("Error en la consulta de verificación de teléfono.");</script>';
+        //         return;
+        //     }
+        // }
+
+        $SQL2 = "";
         $SQL = "UPDATE usuarios SET ";
         if ($nameUpdate != "") {
             $SQL2 .= "nombre = '$nameUpdate' ,";
@@ -131,19 +195,28 @@ class M_Usuarios extends Modelo
         if ($sexoUpdate != "") {
             $SQL2 .= "sexo = '$sexoUpdate' , ";
         }
-        if ($emailUpdate !="") {
+        if ($emailUpdate != "") {
             $SQL2 .= "mail = '$emailUpdate' ,";
         }
-        if ($loginUpdate!="") {
+        if ($loginUpdate != "") {
             $SQL2 .= "login = '$loginUpdate' ,";
         }
-        if ($telefonoUpdate!="") {
+        if ($telefonoUpdate != "") {
             $SQL2 .= "movil = $telefonoUpdate ";
         }
         $SQLCamposSinComa = substr($SQL2, 0, -2);
         $SQL .= $SQLCamposSinComa;
         $SQL .= "WHERE id_Usuario = $id_UsuarioGuardada";
-        echo $SQL;
-        $this->DAO->actualizar($SQL);
+
+        // Ejecutar la actualización
+        $result = $this->DAO->actualizar($SQL);
+
+        if ($result === false) {
+            // Manejar el error
+            echo '<script>alert("Error en la actualización del usuario.");</script>';
+        } else {
+            // Todo salió bien
+            echo '<script>alert("Usuario actualizado correctamente.");</script>';
+        }
     }
 }

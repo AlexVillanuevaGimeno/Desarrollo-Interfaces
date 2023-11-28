@@ -35,7 +35,7 @@ body {
 
 #cabeceraApartados {
     background-color: #b88d37;
-    font-family: Georgia, 'Times New Roman', Times, serif ;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #imgLogo {
@@ -109,9 +109,10 @@ body {
     margin-right: 15px;
 }
 
-label{
+label {
     font-weight: bolder;
 }
+
 input {
     background: linear-gradient(180deg, #b88d37 0%, #fff767 100%);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -160,7 +161,7 @@ button {
     /* Puedes ajustar los colores y los tamaños según tus preferencias */
 }
 
-#bloqueTabla{
+#bloqueTabla {
     width: 100% !important;
     /* height: 600px !important;  */
     scroll-behavior: auto;
@@ -180,21 +181,56 @@ button {
     text-align: center !important;
 
 } */
-table tr th,
-table tr td{
+th {
+    text-align: center !important;
+  }
+/* th:first-child, */
+td:first-child {
+    width: auto !important;
+    text-align: left !important;
+}
+/* th:nth-child(2), */
+td:nth-child(2),
+/* th:nth-child(3), */
+td:nth-child(3) {
+    text-align: left !important;
+}
+
+/* th:nth-child(4), */
+td:nth-child(4),
+/* th:nth-child(6), */
+td:nth-child(6),
+/* th:nth-child(7), */
+td:nth-child(7) {
     text-align: center !important;
 }
-td img{
+
+/* th:nth-child(5), */
+td:nth-child(5) {
+    text-align: right !important;
+}
+
+/* table tr th,
+table tr td{
+    text-align: center !important;
+} */
+td img {
     width: 35px;
     height: 35px;
 }
 
-#imgMasc{
+#imgMasc {
     background-color: aqua;
+    border-radius: 50%;
+    /* Esto redondea la imagen al 50%, creando un círculo */
 }
-#imgFem{
+
+#imgFem {
     background-color: pink;
+    border-radius: 50%;
+    /* Esto redondea la imagen al 50%, creando un círculo */
 }
+
 /* table tr td:nth-child(1) {
     text-align: center !important;
 }
@@ -220,20 +256,26 @@ table tr td:nth-child(6) {
     padding: 8px;
     text-align: left;
 }
+
 .error-container {
     display: flex;
     flex-wrap: wrap;
 }
 
 .error {
-    margin-right: 10px; /* Espacio entre los mensajes de error */
-    margin-bottom: 10px; /* Espacio debajo de los mensajes de error */
-    color: red; /* Color rojo para el texto de error */
+    margin-right: 10px;
+    /* Espacio entre los mensajes de error */
+    margin-bottom: 10px;
+    /* Espacio debajo de los mensajes de error */
+    color: red;
+    /* Color rojo para el texto de error */
 }
 
 .error-field {
-    color: red; /* Color rojo para el campo de error */
-    margin-bottom: 5px; /* Espacio debajo del campo de error */
+    color: red;
+    /* Color rojo para el campo de error */
+    margin-bottom: 5px;
+    /* Espacio debajo del campo de error */
 }
 
 
