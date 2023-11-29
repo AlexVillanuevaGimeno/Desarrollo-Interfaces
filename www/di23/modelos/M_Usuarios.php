@@ -78,22 +78,19 @@ class M_Usuarios extends Modelo
 
         // Validar si ya existe un usuario con el mismo nombre de usuario
     
-        // if ($loginUpdate != "") {
-        //     $sqlVerificar = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$login'";
-        //     $resultadoVerificar = $this->DAO->consultar($sqlVerificar);
-        //     if ($resultadoVerificacionLogin !== false && $resultadoVerificar instanceof mysqli_result) {
-        //         $filaLogin = $resultadoVerificacionLogin->fetch_assoc();
-        //         if ($filaLogin['total'] > 0) {
-        //             // Ya existe un usuario con el mismo nombre de usuario
-        //             echo "Error: Ya existe un usuario con el mismo nombre de usuario.";
-        //             return;
-        //         }
-        //     } else {
-        //         // Manejar el error
-        //         echo "Error en la consulta de verificación de login.";
-        //         return;
-        //     }
-        // }
+        if ($login != "") {
+            $sqlVerificar = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$login'";
+            $resultadoVerificar = $this->DAO->consultar($sqlVerificar);
+            $filaLogin = $resultadoVerificar[0]['total'];
+            
+                if ($filaLogin > 0) {
+                    // Ya existe un usuario con el mismo nombre de usuario
+                    echo "Error: Ya existe un usuario con el mismo nombre de usuario.";
+                    return;
+                }
+    
+        }
+
 
         $SQL = "INSERT INTO usuarios (nombre, apellido_1, apellido_2, sexo, fecha_Alta, mail, login, pass, activo)";
 
@@ -137,29 +134,18 @@ class M_Usuarios extends Modelo
 
         extract($parameters);
 
-        // Validar si ya existe un usuario con el mismo nombre de usuario
-        // if ($loginUpdate != "") {
-        //     $sqlVerificarLogin = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$loginUpdate'";
-        //     echo $sqlVerificarLogin;
-        //     $resultadoVerificacionLogin = $this->DAO->consultar($sqlVerificarLogin);
-        //     echo "Total: " . $resultadoVerificacionLogin[0]['total'];
+        if ($loginUpdate != "") {
+            $sqlVerificar = "SELECT COUNT(*) AS total FROM usuarios WHERE login = '$loginUpdate'";
+            $resultadoVerificar = $this->DAO->consultar($sqlVerificar);
+            $filaLogin = $resultadoVerificar[0]['total'];
             
-
-        //     if ($resultadoVerificacionLogin !== false && $resultadoVerificacionLogin instanceof mysqli_result) {
-        //         $filaLogin = $resultadoVerificacionLogin->fetch_assoc();
-        //         echo $filaLogin;
-
-        //         if ($filaLogin['total'] > 0) {
-        //             // Ya existe un usuario con el mismo nombre de usuario
-        //             echo '<script>alert("Error: Ya existe un usuario con el mismo nombre de usuario.");</script>';
-        //             return;
-        //         }
-        //     } else {
-        //         // Manejar el error
-        //         echo '<script>alert("Error en la consulta de verificación de login.");</script>';
-        //         return;
-        //     }
-        // }
+                if ($filaLogin > 0) {
+                    // Ya existe un usuario con el mismo nombre de usuario
+                    echo "Error: Ya existe un usuario con el mismo nombre de usuario.";
+                    return;
+                }
+    
+        }
 
         // Validar si ya existe un usuario con el mismo teléfono
         // if ($telefonoUpdate != "") {
@@ -206,7 +192,8 @@ class M_Usuarios extends Modelo
         }
         $SQLCamposSinComa = substr($SQL2, 0, -2);
         $SQL .= $SQLCamposSinComa;
-        $SQL .= "WHERE id_Usuario = $id_UsuarioGuardada";
+        $SQL .= " WHERE id_Usuario = $id_UsuarioGuardada";
+        echo "SQL EN EL UPDATE= ".$SQL;
 
         // Ejecutar la actualización
         $result = $this->DAO->actualizar($SQL);

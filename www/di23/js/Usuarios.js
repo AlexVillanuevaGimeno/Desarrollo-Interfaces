@@ -27,29 +27,12 @@ function buscarUsuarios(id_Usuario) {
         });
 }
 
-function insertarUsuario() {
-    let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=insertarUsuario";
-    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
-    fetch("C_Ajax.php?" + parametros, opciones)
-        .then(res => {
-            if (res.ok) {
-                console.log('Respuesta ok');
-                return res.text();
-            }
-        })
-        .then(vista => {
-            buscarUsuarios();
-            limpiarCamposCreate();
-            mostrarCamposCreate();
-            
-        })
-        .catch(err => {
-            console.log("Error al realizar la peticion.", err.message);
-        });
-}
-function validarUsuarioNuevo($crear) {
-    // Obtener los valores de los campos
+
+
+function validarUsuario($crud) {
+
+    if ($crud === "crear") {
+        // Obtener los valores de los campos
     const NOMBRE = document.querySelector('#nombre').value.trim();
     const APELLIDO1 = document.querySelector('#apellido1').value.trim();
     const APELLIDO2 = document.querySelector('#apellido2').value.trim();
@@ -122,15 +105,54 @@ function validarUsuarioNuevo($crear) {
     if (errores.length > 0) {
         return false;
     }
-
-    if ($crear === "crear") {
         insertarUsuario();
+
+    }else if($crud ==="updatear"){
+    const EMAIL = document.querySelector('#emailUpdate').value.trim();
+    const TELEFONO = document.querySelector('#telefonoUpdate').value.trim();
+    // Validación de campos
+    let errores = [];
+    // Validación de correo electrónico
+    if (!/^\S+@\S+\.\S+$/.test(EMAIL)) {
+        errores.push("El campo 'Correo Electrónico' no es una dirección de correo válida.");
+    }
+    // Validación de teléfono (debe tener 9 caracteres numéricos)
+    if (!/^\d{9}$/.test(TELEFONO)) {
+        errores.push("El campo 'Teléfono' debe contener 9 caracteres numéricos.");
+    }
+    document.getElementById('emailUpdateError').innerHTML = errores.includes("El campo 'Correo Electrónico' no es una dirección de correo válida.") ? "Dirección de correo inválida" : "";
+    document.getElementById('telefonoUpdateError').innerHTML = errores.includes("El campo 'Teléfono' debe contener 9 caracteres numéricos.") ? "Formato inválido" : "";
+    document.getElementById('emailUpdate').classList.toggle('error-field', errores.includes("El campo 'Correo Electrónico' no es una dirección de correo válida."));
+    document.getElementById('telefonoUpdate').classList.toggle('error-field', errores.includes("El campo 'Teléfono' debe contener 9 caracteres numéricos."));
+    // Si hay errores no continua
+    if (errores.length > 0) {
+        return false;
+    }
+    updatearUsuario();
     }
 }
 
-
-
-
+function insertarUsuario() {
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Usuarios&metodo=insertarUsuario";
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
+        })
+        .then(vista => {
+            buscarUsuarios();
+            limpiarCamposCreate();
+            mostrarCamposCreate();
+            
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
+}
 
 function guardarIdUsuario(id_Usuario) {
     buscarUsuarios(id_Usuario);
@@ -159,56 +181,7 @@ function updatearUsuario() {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
-function validarUsuarioUpdatear($updatear) {
-    // Obtener los valores de los campos
-    // const NOMBRE = document.querySelector('#nameUpdate').value.trim();
-    // const APELLIDO1 = document.querySelector('#apellidoUpdate1').value.trim();
-    // const APELLIDO2 = document.querySelector('#apellidoUpdate2').value.trim();
-    // const SEXO = document.querySelector('select[name="sexoUpdate"]').value;  
-    const EMAIL = document.querySelector('#emailUpdate').value.trim();
-    // const LOGIN = document.querySelector('#loginUpdate').value.trim();  
-    const TELEFONO = document.querySelector('#telefonoUpdate').value.trim();
 
-    // Validación de campos
-    let errores = [];
-
-    // Validación de correo electrónico
-    if (!/^\S+@\S+\.\S+$/.test(EMAIL)) {
-        errores.push("El campo 'Correo Electrónico' no es una dirección de correo válida.");
-    }
-
-    // Validación de teléfono (debe tener 9 caracteres numéricos)
-    if (!/^\d{9}$/.test(TELEFONO)) {
-        errores.push("El campo 'Teléfono' debe contener 9 caracteres numéricos.");
-    }
-
-    // Mostrar mensajes de error sobre los campos
-    // document.getElementById('nombreUpdateError').innerHTML = errores.includes("El campo 'Nombre' es obligatorio.") ? "Campo obligatorio" : "";
-    // document.getElementById('apellidoUpdate1Error').innerHTML = errores.includes("Los campos 'Apellido 1' y 'Apellido 2' son obligatorios.") ? "Ambos campos son obligatorios" : "";
-    // document.getElementById('apellidoUpdate2Error').innerHTML = errores.includes("Los campos 'Apellido 1' y 'Apellido 2' son obligatorios.") ? "Ambos campos son obligatorios" : "";
-    // document.getElementById('sexoUpdateError').innerHTML = errores.includes("El campo 'Sexo' debe ser 'M' o 'H'.") ? "Seleccione M o H" : "";
-    document.getElementById('emailUpdateError').innerHTML = errores.includes("El campo 'Correo Electrónico' no es una dirección de correo válida.") ? "Dirección de correo inválida" : "";
-    // document.getElementById('loginUpdateError').innerHTML = errores.includes("El campo 'Nombre de Usuario' es obligatorio.") ? "Campo obligatorio" : "";
-    document.getElementById('telefonoUpdateError').innerHTML = errores.includes("El campo 'Teléfono' debe contener 9 caracteres numéricos.") ? "Formato inválido" : "";
-
-    // Cambiar el color del campo de error
-    // document.getElementById('nameUpdate').classList.toggle('error-field', errores.includes("El campo 'Nombre' es obligatorio."));
-    // document.getElementById('apellidoUpdate1').classList.toggle('error-field', errores.includes("Los campos 'Apellido 1' y 'Apellido 2' son obligatorios."));
-    // document.getElementById('apellidoUpdate2').classList.toggle('error-field', errores.includes("Los campos 'Apellido 1' y 'Apellido 2' son obligatorios."));
-    // document.querySelector('select[name="sexoUpdate"]').classList.toggle('error-field', errores.includes("El campo 'Sexo' debe ser 'M' o 'H'."));
-    document.getElementById('emailUpdate').classList.toggle('error-field', errores.includes("El campo 'Correo Electrónico' no es una dirección de correo válida."));
-    // document.getElementById('loginUpdate').classList.toggle('error-field', errores.includes("El campo 'Nombre de Usuario' es obligatorio."));
-    document.getElementById('telefonoUpdate').classList.toggle('error-field', errores.includes("El campo 'Teléfono' debe contener 9 caracteres numéricos."));
-
-    // Si hay errores no continua
-    if (errores.length > 0) {
-        return false;
-    }
-
-    if ($updatear ==="updatear") {
-        updatearUsuario();
-    }
-}
 
 
 function mostrarCamposCreate() {
