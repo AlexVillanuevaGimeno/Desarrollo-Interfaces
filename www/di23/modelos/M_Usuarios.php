@@ -147,25 +147,6 @@ class M_Usuarios extends Modelo
     
         }
 
-        // Validar si ya existe un usuario con el mismo teléfono
-        // if ($telefonoUpdate != "") {
-        //     $sqlVerificarTelefono = "SELECT COUNT(*) AS total FROM usuarios WHERE movil = $telefonoUpdate AND id_Usuario != $id_UsuarioGuardada";
-        //     $resultadoVerificacionTelefono = $this->DAO->consultar($sqlVerificarTelefono);
-
-        //     if ($resultadoVerificacionTelefono !== false && $resultadoVerificacionTelefono instanceof mysqli_result) {
-        //         $filaTelefono = $resultadoVerificacionTelefono->fetch_assoc();
-
-        //         if ($filaTelefono['total'] > 0) {
-        //             // Ya existe un usuario con el mismo teléfono
-        //             echo '<script>alert("Error: Ya existe un usuario con el mismo teléfono.");</script>';
-        //             return;
-        //         }
-        //     } else {
-        //         // Manejar el error
-        //         echo '<script>alert("Error en la consulta de verificación de teléfono.");</script>';
-        //         return;
-        //     }
-        // }
 
         $SQL2 = "";
         $SQL = "UPDATE usuarios SET ";
