@@ -220,13 +220,13 @@ td img {
 }
 
 #imgMasc {
-    background-color: aqua;
+    background-color: #fff767;
     border-radius: 50%;
     /* Esto redondea la imagen al 50%, creando un círculo */
 }
 
 #imgFem {
-    background-color: pink;
+    background-color: #fff767;
     border-radius: 50%;
     /* Esto redondea la imagen al 50%, creando un círculo */
 }

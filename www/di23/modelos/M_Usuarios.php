@@ -141,7 +141,7 @@ class M_Usuarios extends Modelo
             
                 if ($filaLogin > 0) {
                     // Ya existe un usuario con el mismo nombre de usuario
-                    echo "Error: Ya existe un usuario con el mismo nombre de usuario.";
+                    echo '<script>alert("Error: Ya existe un usuario con el mismo login.");</script>';
                     return;
                 }
     
@@ -187,4 +187,5 @@ class M_Usuarios extends Modelo
             echo '<script>alert("Usuario actualizado correctamente.");</script>';
         }
     }
+    
 }

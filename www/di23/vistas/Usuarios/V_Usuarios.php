@@ -89,7 +89,7 @@ echo '<div id="bloqueTxt">
             <input type="checkbox" id="activo" name="activo" value="S"> Activo
         </label>
         <br>
-        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="validarUsuario('crear')">Insertar Usuario</button>
+        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="validarUsuario()">Insertar Usuario</button>
     </div>
 </form>
 
@@ -151,7 +151,7 @@ echo '<div id="bloqueTxt">
         <div id="telefonoUpdateError" class="error-field"></div>
         <input type="tel" id="telefonoUpdate" name="telefonoUpdate" placeholder="Telefono"><br>
 
-        <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="validarUsuario('updatear')">Actualizar</button>
+        <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="validarUsuario()">Actualizar</button>
     </div>
 </form>
 

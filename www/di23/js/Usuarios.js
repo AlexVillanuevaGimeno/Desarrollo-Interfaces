@@ -1,5 +1,5 @@
 
-var id_UsuarioGuardada;
+var id_UsuarioGuardada =0;
 
 
 function buscarUsuarios(id_Usuario) {
@@ -29,9 +29,9 @@ function buscarUsuarios(id_Usuario) {
 
 
 
-function validarUsuario($crud) {
-
-    if ($crud === "crear") {
+function validarUsuario() {
+    console.log("el id es= " + id_UsuarioGuardada);
+    if (id_UsuarioGuardada === 0) {
         // Obtener los valores de los campos
     const NOMBRE = document.querySelector('#nombre').value.trim();
     const APELLIDO1 = document.querySelector('#apellido1').value.trim();
@@ -105,9 +105,27 @@ function validarUsuario($crud) {
     if (errores.length > 0) {
         return false;
     }
-        insertarUsuario();
+    let opciones = { method: "GET" };
+    let parametros = "controlador=Usuarios&metodo=insertarUsuario";
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
+    fetch("C_Ajax.php?" + parametros, opciones)
+        .then(res => {
+            if (res.ok) {
+                console.log('Respuesta ok');
+                return res.text();
+            }
+        })
+        .then(vista => {
+            buscarUsuarios();
+            limpiarCamposCreate();
+            mostrarCamposCreate();
+            
+        })
+        .catch(err => {
+            console.log("Error al realizar la peticion.", err.message);
+        });
 
-    }else if($crud ==="updatear"){
+    }else{
     const EMAIL = document.querySelector('#emailUpdate').value.trim();
     const TELEFONO = document.querySelector('#telefonoUpdate').value.trim();
     // Validación de campos
@@ -128,39 +146,6 @@ function validarUsuario($crud) {
     if (errores.length > 0) {
         return false;
     }
-    updatearUsuario();
-    }
-}
-
-function insertarUsuario() {
-    let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=insertarUsuario";
-    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
-    fetch("C_Ajax.php?" + parametros, opciones)
-        .then(res => {
-            if (res.ok) {
-                console.log('Respuesta ok');
-                return res.text();
-            }
-        })
-        .then(vista => {
-            buscarUsuarios();
-            limpiarCamposCreate();
-            mostrarCamposCreate();
-            
-        })
-        .catch(err => {
-            console.log("Error al realizar la peticion.", err.message);
-        });
-}
-
-function guardarIdUsuario(id_Usuario) {
-    buscarUsuarios(id_Usuario);
-    id_UsuarioGuardada = id_Usuario;
-    console.log("Estoy guardando el id (funcion) " + id_Usuario);
-}
-
-function updatearUsuario() {
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=updatearUsuario";
     parametros += "&id_UsuarioGuardada=" + id_UsuarioGuardada;
@@ -175,12 +160,65 @@ function updatearUsuario() {
         .then(vista => {
             buscarUsuarios();
             id_UsuarioGuardada = 0;
+            limpiarCamposUpdate();
             mostrarCamposUpdate();
         })
         .catch(err => {
             console.log("Error al realizar la peticion.", err.message);
         });
+    }
 }
+
+// function insertarUsuario() {
+//     let opciones = { method: "GET" };
+//     let parametros = "controlador=Usuarios&metodo=insertarUsuario";
+//     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
+//     fetch("C_Ajax.php?" + parametros, opciones)
+//         .then(res => {
+//             if (res.ok) {
+//                 console.log('Respuesta ok');
+//                 return res.text();
+//             }
+//         })
+//         .then(vista => {
+//             buscarUsuarios();
+//             limpiarCamposCreate();
+//             mostrarCamposCreate();
+            
+//         })
+//         .catch(err => {
+//             console.log("Error al realizar la peticion.", err.message);
+//         });
+// }
+
+function guardarIdUsuario(id_Usuario) {
+    buscarUsuarios(id_Usuario);
+    id_UsuarioGuardada = id_Usuario;
+    console.log("Estoy guardando el id (funcion) " + id_Usuario);
+}
+
+// function updatearUsuario() {
+//     let opciones = { method: "GET" };
+//     let parametros = "controlador=Usuarios&metodo=updatearUsuario";
+//     parametros += "&id_UsuarioGuardada=" + id_UsuarioGuardada;
+//     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioUpdatear"))).toString();
+//     fetch("C_Ajax.php?" + parametros, opciones)
+//         .then(res => {
+//             if (res.ok) {
+//                 console.log('Respuesta ok');
+//                 return res.text();
+//             }
+//         })
+//         .then(vista => {
+//             buscarUsuarios();
+//             id_UsuarioGuardada = 0;
+//             limpiarCamposUpdate();
+//             mostrarCamposUpdate();
+//         })
+//         .catch(err => {
+//             console.log("Error al realizar la peticion.", err.message);
+//         });
+// }
 
 
 
@@ -243,6 +281,14 @@ function tablaAltura() {
 function limpiarCamposCreate() {
     // Obtiene el formulario por su ID
     var formulario = document.getElementById("formularioCrear");
+
+    // Resetea el formulario, limpiando todos los campos
+    formulario.reset();
+  }
+
+  function limpiarCamposUpdate() {
+    // Obtiene el formulario por su ID
+    var formulario = document.getElementById("formularioUpdatear");
 
     // Resetea el formulario, limpiando todos los campos
     formulario.reset();
