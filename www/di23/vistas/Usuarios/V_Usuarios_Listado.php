@@ -57,16 +57,17 @@
                 // <img src='img/x.png' alt='Inactivo'>";
             }
         }
-            
-
-
-
             // }elseif($fila['sexo'] == 'H'){
             //     return "Activo";
             // }else{
             //     return"Inactivo";
             // }
-        
+
+            $respuesta = array(
+                'tablaHTML' => $tablaHTML,
+                'totalRegistros' => $usuarios, // TOTAL REGISTROS
+            );
+            echo json_encode($respuesta);
     
 
         foreach ($usuarios as $fila) {
@@ -86,6 +87,8 @@
         echo '</tbody>';
         echo '</table>';
         echo '</div>'
+
+        
     
     // foreach($usuarios as $fila){
     //     echo $fila['apellido_1'].' '.$fila['apellido_2'].', '.$fila['nombre'].'<br>';

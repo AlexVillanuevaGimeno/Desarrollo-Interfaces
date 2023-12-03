@@ -28,23 +28,23 @@
 			return $filas;
 		}
 
-        public function consultarConPaginacion($SQL, $paginaActual, $registrosPorPagina){
-            $inicio = ($paginaActual - 1) * $registrosPorPagina;
-            $SQL .= " LIMIT $inicio, $registrosPorPagina";
+        // public function consultarConPaginacion($SQL, $paginaActual, $registrosPorPagina){
+        //     $inicio = ($paginaActual - 1) * $registrosPorPagina;
+        //     $SQL .= " LIMIT $inicio, $registrosPorPagina";
         
-            $res = $this->conexion->query($SQL, MYSQLI_USE_RESULT);
-            $filas = array();
+        //     $res = $this->conexion->query($SQL, MYSQLI_USE_RESULT);
+        //     $filas = array();
         
-            if ($this->conexion->errno) {
-                die('Error en consulta: '.$this->conexion->error.' SQL: <b>'.$SQL.'</b>');
-            } else {
-                while($reg = $res->fetch_assoc()){
-                    $filas[] = $reg;
-                }
-            }
+        //     if ($this->conexion->errno) {
+        //         die('Error en consulta: '.$this->conexion->error.' SQL: <b>'.$SQL.'</b>');
+        //     } else {
+        //         while($reg = $res->fetch_assoc()){
+        //             $filas[] = $reg;
+        //         }
+        //     }
         
-            return $filas;
-        }
+        //     return $filas;
+        // }
         
 
 		public function insertar($SQL){
