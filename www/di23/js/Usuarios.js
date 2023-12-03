@@ -307,24 +307,24 @@ function mostrarCamposUpdate() {
 FUNCION PARA DEJAR LA TABLA ESTATICA 
 AUNQUE SE AÑADAN LOS CAMPOS DE INSERT O UPDATE
 */
-function tablaAltura() {
-    var camposCreate = document.getElementById("camposCrear");
-    var camposUpdate = document.getElementById("camposUpdatear");
-    var resultados = document.getElementById("bloqueTabla");
+// function tablaAltura() {
+//     var camposCreate = document.getElementById("camposCrear");
+//     var camposUpdate = document.getElementById("camposUpdatear");
+//     var resultados = document.getElementById("bloqueTabla");
 
-    // Obtener los estilos computados
-    var estilosCreate = window.getComputedStyle(camposCreate);
-    var estilosUpdate = window.getComputedStyle(camposUpdate);
+//     // Obtener los estilos computados
+//     var estilosCreate = window.getComputedStyle(camposCreate);
+//     var estilosUpdate = window.getComputedStyle(camposUpdate);
 
-    // Verificar si al menos uno de los campos está visible
-    if (estilosCreate.display !== "none" || estilosUpdate.display !== "none") {
-        console.log("Al menos uno de los campos está visible");
-        resultados.style.height = "605px";
-    } else {
-        console.log("Ambos campos están ocultos");
-        resultados.style.height = "700px";
-    }
-}
+//     // Verificar si al menos uno de los campos está visible
+//     if (estilosCreate.display !== "none" || estilosUpdate.display !== "none") {
+//         console.log("Al menos uno de los campos está visible");
+//         resultados.style.height = "605px";
+//     } else {
+//         console.log("Ambos campos están ocultos");
+//         resultados.style.height = "700px";
+//     }
+// }
 
 
 function limpiarCamposCreate() {

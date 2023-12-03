@@ -258,9 +258,6 @@ table tr td:nth-child(6) {
     padding: 8px;
     text-align: left;
 }
-#tablaListado td{
-    padding-left: 8px;
-}
 
 .error-container {
     display: flex;
