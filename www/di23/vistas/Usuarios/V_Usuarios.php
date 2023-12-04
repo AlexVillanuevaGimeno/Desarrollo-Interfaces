@@ -24,7 +24,7 @@ echo '<div id="bloqueTxt">
         <input type="checkbox" id="activoBusqueda" name="activoBusqueda" value="S">
     </label>
     <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios()">Buscar</button>
-    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate()">Crear nuevo usuario</button>
+    <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate();tablaAltura()">Crear nuevo usuario</button>
 </form>
 
 <!--CAMPOS FORMULARIO CREAR-->
@@ -89,7 +89,7 @@ echo '<div id="bloqueTxt">
             <input type="checkbox" id="activo" name="activo" value="S"> Activo
         </label>
         <br>
-        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="validarUsuario()">Insertar Usuario</button>
+        <button type="button" id="btnInsertar" class="btn btn-primary" onclick="validarUsuario(); tablaAltura()">Insertar Usuario</button>
     </div>
 </form>
 
@@ -151,7 +151,7 @@ echo '<div id="bloqueTxt">
         <div id="telefonoUpdateError" class="error-field"></div>
         <input type="tel" id="telefonoUpdate" name="telefonoUpdate" placeholder="Telefono"><br>
 
-        <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="validarUsuario()">Actualizar</button>
+        <button type="button" id="btnUpdatear" class="btn btn-primary" onclick="validarUsuario();tablaAltura()">Actualizar</button>
     </div>
 </form>
 
