@@ -1,13 +1,9 @@
-<?php
-echo '<div id="bloqueTxt">
+
+ <div id="bloqueTxt">
         <p class="fw-bolder fst-italic fs-3" id="txtBusqueda">
         Busqueda de Usuarios
         </p>
-    </div>';
-
-
-
-?>
+</div>
 <!--CAMPOS FORMULARIO BUSCAR-->
 <form id="formularioBuscar" name="formularioBuscar" onkeydown="return event.key != 'Enter';">
     <label for="nombreBusqueda" oninput="buscarUsuarios()">
