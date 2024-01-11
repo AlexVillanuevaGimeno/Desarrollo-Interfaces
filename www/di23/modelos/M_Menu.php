@@ -13,7 +13,16 @@ class M_Menu extends Modelo{
     public function buscarMenu(){
       $SQL="SELECT * FROM Menu WHERE 1=1 ORDER BY ID_PADRE ASC, ORDEN ASC";
       $menus = $this->DAO->consultar($SQL);
-      return $menus;
+      foreach ($menus as $menu) {
+        if($menu['id_padre']==0){
+            $menuBueno[$menu['id_menu']] = $menu;
+        
+        }else{
+            $menuBueno[$menu['id_padre']] ['hijos'][]=$menu;
+        
+        }
+        }
+      return $menuBueno;
     }
 }
 ?>

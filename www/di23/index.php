@@ -16,6 +16,7 @@
             href="librerias/bootstrap-5.1.3-dist/css/bootstrap.css">
         </link>
         <script src="js/app.js"></script>
+        <script src="js/menu.js"></script>
         <script src="https://kit.fontawesome.com/f323bd5f47.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/index.css">
         <title>Index 1ª Ev</title>
@@ -52,8 +53,12 @@
                     </button>
 
                     <div class="collapse navbar-collapse fs-5 fw-lighter" id="navbarsExample04">
-                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0" id="menuBarra">
+                           <?php
+                            require_once 'controladores\C_Menu.php';
+                            $menu = new C_Menu();
+                            $menu->getMenus();
+                           ?>
                         </ul>
                     </div>
                 </div>

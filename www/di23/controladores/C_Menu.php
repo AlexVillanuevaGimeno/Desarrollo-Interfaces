@@ -3,6 +3,7 @@
     require_once 'modelos/M_Menu.php';
     require_once 'vistas/Vista.php';
 
+
     class C_Menu extends Controlador{
         private $modelo;
         public function __construct(){
@@ -11,7 +12,7 @@
         }
         public function getMenus($filtros=array()){
             $menus=$this->modelo->buscarMenu($filtros);
-            Vista::render('vistas\Menus\V_Menu.php', array('menus'=>$menus));
+            Vista::render('vistas\Menus\V_Menu.php', array('menuBueno'=>$menus));
         }
     
     }
