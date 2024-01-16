@@ -64,27 +64,28 @@ class M_Usuarios extends Modelo
         return $usuarios;
     }
 
-    // public function construirConsultaUsuariosConPaginacion($paginaActual, $registrosPorPagina, $filtros = array()){
-    //     // Llamada a la función existente para buscar usuarios
-    //     $usuarios = $this->buscarUsuarios($filtros);
+    public function construirConsultaUsuariosConPaginacion($filtros = array()){
+        extract($filtros);
+        // Llamada a la función existente para buscar usuarios
+        $usuarios = $this->buscarUsuarios($filtros);
     
-    //     // Contar el total de registros
-    //     $totalRegistros = count($usuarios);
+        // Contar el total de registros
+        $totalRegistros = count($usuarios);
     
-    //     // Calcular el total de páginas
-    //     $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+        // Calcular el total de páginas
+        $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
     
-    //     // Aplicar lógica de paginación
-    //     $inicio = ($paginaActual - 1) * $registrosPorPagina;
-    //     $usuariosPaginados = array_slice($usuarios, $inicio, $registrosPorPagina);
+        // Aplicar lógica de paginación
+        $inicio = ($paginaActual - 1) * $registrosPorPagina;
+        $usuariosPaginados = array_slice($usuarios, $inicio, $registrosPorPagina);
     
-    //     // Devolver los usuarios paginados junto con la información de paginación
-    //     return array(
-    //         'usuarios' => $usuariosPaginados,
-    //         'totalRegistros' => $totalRegistros,
-    //         'totalPaginas' => $totalPaginas,
-    //     );
-    // }
+        // Devolver los usuarios paginados junto con la información de paginación
+        return array(
+            'usuarios' => $usuariosPaginados,
+            'totalRegistros' => $totalRegistros,
+            'totalPaginas' => $totalPaginas,
+        );
+    }
     
 
     public function insertarUsuario($parameters = array())
