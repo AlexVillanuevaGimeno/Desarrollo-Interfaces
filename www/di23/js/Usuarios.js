@@ -3,53 +3,53 @@ var id_UsuarioGuardada =0;
 // var registrosPorPagina = 10;
 
 // // Función para cargar la tabla con los datos proporcionados
-// function cargarTabla(data) {
-//     // Coloca la tabla en el contenedor
-//     document.getElementById('tablaContainer').innerHTML = data.tablaHTML;
+function cargarTabla(data) {
+    // Coloca la tabla en el contenedor
+    document.getElementById('tablaContainer').innerHTML = data.tablaHTML;
 
-//     // Utiliza el total de registros desde la respuesta JSON
-//     var totalRegistros = data.totalRegistros;
+    // Utiliza el total de registros desde la respuesta JSON
+    var totalRegistros = data.totalRegistros;
 
-//     // Actualiza la información de paginación si es necesario
-//     actualizarPaginacion(totalRegistros, calcularTotalPaginas(totalRegistros, registrosPorPagina));
-// }
+    // Actualiza la información de paginación si es necesario
+    actualizarPaginacion(totalRegistros, calcularTotalPaginas(totalRegistros, registrosPorPagina));
+}
 
 // // Función para calcular el total de páginas
-// function calcularTotalPaginas(totalRegistros, registrosPorPagina) {
-//     return Math.ceil(totalRegistros / registrosPorPagina);
-// }
+function calcularTotalPaginas(totalRegistros, registrosPorPagina) {
+    return Math.ceil(totalRegistros / registrosPorPagina);
+}
 
 // // Función para cargar la página y la tabla
-// function cargarPagina(pagina) {
-//     // Hacer una petición AJAX para obtener los datos de la página deseada
-//     fetch('tu_servidor.php?pagina=' + pagina + '&registrosPorPagina=' + registrosPorPagina, {
-//         method: 'GET'
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         // Después de obtener los datos paginados, carga la tabla y realiza cualquier otra lógica necesaria
-//         cargarTabla(data);
-//     })
-//     .catch(error => {
-//         console.error('Error al cargar la página:', error);
-//     });
-// }
+function cargarPagina(pagina) {
+    // Hacer una petición AJAX para obtener los datos de la página deseada
+    fetch('tu_servidor.php?pagina=' + pagina + '&registrosPorPagina=' + registrosPorPagina, {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Después de obtener los datos paginados, carga la tabla y realiza cualquier otra lógica necesaria
+        cargarTabla(data);
+    })
+    .catch(error => {
+        console.error('Error al cargar la página:', error);
+    });
+}
 
-// // Manejar clic en los enlaces de paginación
-// document.addEventListener('click', function (e) {
-//     if (e.target && e.target.className === 'page-link') {
-//         e.preventDefault();
+// Manejar clic en los enlaces de paginación
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.className === 'page-link') {
+        e.preventDefault();
 
-//         // Obtén el número de la página desde el enlace
-//         var pagina = e.target.text;
+        // Obtén el número de la página desde el enlace
+        var pagina = e.target.text;
 
-//         // Carga los datos de la página seleccionada
-//         cargarPagina(pagina);
-//     }
-// });
+        // Carga los datos de la página seleccionada
+        cargarPagina(pagina);
+    }
+});
 
 // // Cargar la tabla al inicio
-// cargarPagina(1);
+cargarPagina(1);
 
 function buscarUsuarios(id_Usuario) {
     let opciones = { method: "GET" };
