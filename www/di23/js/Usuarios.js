@@ -19,11 +19,7 @@ function calcularTotalPaginas(totalRegistros, registrosPorPagina) {
 }
 
 // Función para cargar la página y la tabla
-function cargarPagina(pagina, id_Usuario) {
-    if (id_Usuario != null) {
-        parametros += "&id_Usuario=" + id_Usuario;
-        console.log("parametros: " + parametros)
-    }
+function cargarPagina(pagina) {
     // Hacer una petición AJAX para obtener los datos de la página deseada
     fetch('C_Ajax.php?' + pagina + '&registrosPorPagina=' + registrosPorPagina, {
         method: 'GET'
