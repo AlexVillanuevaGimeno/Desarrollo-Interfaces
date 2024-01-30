@@ -40,10 +40,9 @@
             $datosPaginacion = $this->modelo->construirConsultaUsuariosConPaginacion($filtros);
         
             // Renderizar la vista de usuarios
-            // Vista::render('vistas/V_Usuarios.php', array('usuarios' => $datosPaginacion['usuarios']));
+            Vista::render('vistas/Usuarios/V_Usuarios.php', array('usuarios' => $datosPaginacion['usuarios']));
         
             // Renderizar la vista del paginador
-            echo("alex");
             Vista::render('vistas/V_Paginador.php', $datosPaginacion);
         }
         

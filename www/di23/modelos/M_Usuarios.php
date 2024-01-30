@@ -61,11 +61,18 @@ class M_Usuarios extends Modelo
 
         // echo $SQL;
         $usuarios = $this->DAO->consultar($SQL);
+    
         return $usuarios;
     }
 
-    public function construirConsultaUsuariosConPaginacion($filtros = array()){
+    
+    public function construirConsultaUsuariosConPaginacion(array $filtros = [])
+    {
+        $registrosPorPagina = 10;
+        $paginaActual = 1;
+        
         extract($filtros);
+        
         // Llamada a la función existente para buscar usuarios
         $usuarios = $this->buscarUsuarios($filtros);
     
@@ -80,11 +87,11 @@ class M_Usuarios extends Modelo
         $usuariosPaginados = array_slice($usuarios, $inicio, $registrosPorPagina);
     
         // Devolver los usuarios paginados junto con la información de paginación
-        return array(
+        return [
             'usuarios' => $usuariosPaginados,
             'totalRegistros' => $totalRegistros,
             'totalPaginas' => $totalPaginas,
-        );
+        ];
     }
     
 

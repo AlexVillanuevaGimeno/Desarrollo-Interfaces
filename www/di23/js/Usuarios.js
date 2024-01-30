@@ -1,8 +1,7 @@
 // Variables globales o configuraciones
 var id_UsuarioGuardada =0;
-// var registrosPorPagina = 10;
+var registrosPorPagina = 10;
 
-// // Función para cargar la tabla con los datos proporcionados
 function cargarTabla(data) {
     // Coloca la tabla en el contenedor
     document.getElementById('tablaContainer').innerHTML = data.tablaHTML;
@@ -14,15 +13,19 @@ function cargarTabla(data) {
     actualizarPaginacion(totalRegistros, calcularTotalPaginas(totalRegistros, registrosPorPagina));
 }
 
-// // Función para calcular el total de páginas
+// Función para calcular el total de páginas
 function calcularTotalPaginas(totalRegistros, registrosPorPagina) {
     return Math.ceil(totalRegistros / registrosPorPagina);
 }
 
-// // Función para cargar la página y la tabla
-function cargarPagina(pagina) {
+// Función para cargar la página y la tabla
+function cargarPagina(pagina, id_Usuario) {
+    if (id_Usuario != null) {
+        parametros += "&id_Usuario=" + id_Usuario;
+        console.log("parametros: " + parametros)
+    }
     // Hacer una petición AJAX para obtener los datos de la página deseada
-    fetch('tu_servidor.php?pagina=' + pagina + '&registrosPorPagina=' + registrosPorPagina, {
+    fetch('C_Ajax.php?' + pagina + '&registrosPorPagina=' + registrosPorPagina, {
         method: 'GET'
     })
     .then(response => response.json())
