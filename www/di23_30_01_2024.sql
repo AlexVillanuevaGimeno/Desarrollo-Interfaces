@@ -45,7 +45,7 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`id_menu`, `nombre_menu`, `id_padre`, `accion`, `orden`, `privado`) VALUES
 (1, 'Usuarios', NULL, NULL, 1, 0),
 (2, 'Pedidos', NULL, NULL, 2, 0),
-(3, 'CRUD', 1, 'getVistaMenuSeleccionado(\'Usuarios\', \'listarUsuariosConPaginacion\');', 1, 0);
+(3, 'CRUD', 1, 'getVistaMenuSeleccionado(\'Usuarios\', \'getVistaUsuarios\');', 1, 0);
 
 -- --------------------------------------------------------
 
