@@ -79,7 +79,7 @@
             echo '<td>' .  returnGenero($fila).  '</td>';
             echo '<td>' . returnNoEspecificados($fila['movil']) . '</td>';
             echo '<td>' . returnActivos($fila) . '</td>';
-            echo '<td><button id="btnCamposUpdate" class="btn btn-primary" onclick="mostrarCamposUpdate(); tablaAltura(); guardarIdUsuario('.$fila['id_Usuario'].')">Actualizar</button></td>';
+            echo '<td><button id="btnCamposUpdate" class="btn btn-primary" onclick="mostrarCamposUpdate(); tablaAltura(); guardarIdUsuario('.$fila['id_usuario'].')">Actualizar</button></td>';
             echo '</tr>';
         }
 

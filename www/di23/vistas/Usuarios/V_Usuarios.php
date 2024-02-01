@@ -19,7 +19,7 @@
     <label for="activoBusqueda" oninput="buscarUsuarios()">Actividad
         <input type="checkbox" id="activoBusqueda" name="activoBusqueda" value="S">
     </label>
-    <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios()">Buscar</button>
+    <button type="button" id="btnBuscar" class="btn btn-primary" onclick="buscarUsuarios(0)">Buscar</button>
     <button type="button" id="btnCreateUser" class="btn btn-primary" onclick="mostrarCamposCreate();tablaAltura()">Crear nuevo usuario</button>
 </form>
 

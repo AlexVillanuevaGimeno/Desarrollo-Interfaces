@@ -34,23 +34,17 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
         }
+    
+        // public function listarUsuariosConPaginacion($filtros = array()){
+        //     // Llamada a la nueva función en el modelo que reutiliza la lógica existente
+        //     $datosPaginacion = $this->modelo->construirConsultaUsuariosConPaginacion($filtros);
         
-        public function listarUsuariosConPaginacion($filtros = array()){
-            // Llamada a la nueva función en el modelo que reutiliza la lógica existente
-            $datosPaginacion = $this->modelo->construirConsultaUsuariosConPaginacion($filtros);
+        //     // Renderizar la vista de usuarios
+        //     Vista::render('vistas/Usuarios/V_Usuarios.php', array('usuarios' => $datosPaginacion['usuarios']));
         
-            // Renderizar la vista de usuarios
-            Vista::render('vistas/Usuarios/V_Usuarios.php', array('usuarios' => $datosPaginacion['usuarios']));
-        
-            // Renderizar la vista del paginador
-            Vista::render('vistas/V_Paginador.php', $datosPaginacion);
-        }
-        
-        
-        
-        
-
- 
+        //     // Renderizar la vista del paginador
+        //     Vista::render('vistas/V_Paginador.php', $datosPaginacion);
+        // }
         public function insertarUsuario($parameters=array()){
             $usuarios=$this->modelo->insertarUsuario($parameters);
             //echo json_encode($usuarios);

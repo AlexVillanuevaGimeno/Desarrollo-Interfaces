@@ -13,7 +13,7 @@ class M_Usuarios extends Modelo
 
     public function buscarUsuarios($filtros = array())
     {
-        $id_Usuario = '';
+        $id_usuario = '';
         $activoBusqueda = '';
         $sexoBusqueda = '';
         $nombreBusqueda = '';
@@ -28,7 +28,7 @@ class M_Usuarios extends Modelo
             $pass = addslashes($pass);
             $SQL .= " AND login = '$usuario' AND pass = MD5('$pass')";
         } else {
-            if ($id_Usuario != '') {
+            if ($id_usuario != '' && $id_usuario!= 0) {
                 $aTexto = explode(' ', $id_Usuario);
                 $SQL .= " AND (1=2 ";
                 foreach ($aTexto as $palabra) {
@@ -66,33 +66,33 @@ class M_Usuarios extends Modelo
     }
 
     
-    public function construirConsultaUsuariosConPaginacion(array $filtros = [])
-    {
-        $registrosPorPagina = 10;
-        $paginaActual = 1;
+    // public function construirConsultaUsuariosConPaginacion(array $filtros = [])
+    // {
+    //     $registrosPorPagina = 10;
+    //     $paginaActual = 1;
         
-        extract($filtros);
+    //     extract($filtros);
         
-        // Llamada a la función existente para buscar usuarios
-        $usuarios = $this->buscarUsuarios($filtros);
+    //     // Llamada a la función existente para buscar usuarios
+    //     $usuarios = $this->buscarUsuarios($filtros);
     
-        // Contar el total de registros
-        $totalRegistros = count($usuarios);
+    //     // Contar el total de registros
+    //     $totalRegistros = count($usuarios);
     
-        // Calcular el total de páginas
-        $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
+    //     // Calcular el total de páginas
+    //     $totalPaginas = ceil($totalRegistros / $registrosPorPagina);
     
-        // Aplicar lógica de paginación
-        $inicio = ($paginaActual - 1) * $registrosPorPagina;
-        $usuariosPaginados = array_slice($usuarios, $inicio, $registrosPorPagina);
+    //     // Aplicar lógica de paginación
+    //     $inicio = ($paginaActual - 1) * $registrosPorPagina;
+    //     $usuariosPaginados = array_slice($usuarios, $inicio, $registrosPorPagina);
     
-        // Devolver los usuarios paginados junto con la información de paginación
-        return [
-            'usuarios' => $usuariosPaginados,
-            'totalRegistros' => $totalRegistros,
-            'totalPaginas' => $totalPaginas,
-        ];
-    }
+    //     // Devolver los usuarios paginados junto con la información de paginación
+    //     return [
+    //         'usuarios' => $usuariosPaginados,
+    //         'totalRegistros' => $totalRegistros,
+    //         'totalPaginas' => $totalPaginas,
+    //     ];
+    // }
     
 
     public function insertarUsuario($parameters = array())

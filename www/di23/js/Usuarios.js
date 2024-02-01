@@ -50,12 +50,12 @@ document.addEventListener('click', function (e) {
 // // Cargar la tabla al inicio
 cargarPagina(1);
 
-function buscarUsuarios(id_Usuario) {
+function buscarUsuarios(id_usuario) {
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=buscarUsuarios";
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioBuscar"))).toString();
-    if (id_Usuario != null) {
-        parametros += "&id_Usuario=" + id_Usuario;
+    if (id_usuario != null) {
+        parametros += "&id_usuario=" + id_usuario;
         console.log("parametros: " + parametros)
     }
 
