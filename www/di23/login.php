@@ -7,7 +7,9 @@ if ($usuario == '' || $pass == '') {
     $mensa = 'Debe completar los campos';
 } else {
     require_once 'controladores/C_Usuarios.php';
+    require_once 'controladores/C_Permisos.php';
     $objUsuarios = new C_Usuarios();
+    $objPermisos = new C_Permisos();
     $datos['usuario'] = $usuario;
     $datos['pass'] = $pass;
     // $resultado=$objUsuarios->validarUsuario($datos);
@@ -16,6 +18,7 @@ if ($usuario == '' || $pass == '') {
         'usuario' => $usuario,
         'pass' => $pass
     ));
+    $resultado= $objPermisos->buscarPermisos(array());
     if ($resultado == 'S') {
         header('Location: index.php');
     } else {
