@@ -32,6 +32,8 @@ GROUP BY
     usuarios.nombre,
     usuario_rol.id_rol;
 
+
+
 -- Permisos sin concatenar
 SELECT usuarios.id_usuario, rol_permiso.id_permiso
 FROM usuarios
