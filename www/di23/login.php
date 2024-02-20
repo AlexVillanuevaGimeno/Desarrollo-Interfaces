@@ -3,29 +3,29 @@ $usuario = '';
 $pass = '';
 extract($_POST);
 //var_dump($_POST);
-if ($usuario == '' || $pass == '') {
+if (empty($usuario) || empty($pass)) {
     $mensa = 'Debe completar los campos';
 } else {
     require_once 'controladores/C_Usuarios.php';
     require_once 'controladores/C_Permisos.php';
     $objUsuarios = new C_Usuarios();
     $objPermisos = new C_Permisos();
-    $datos['usuario'] = $usuario;
-    $datos['pass'] = $pass;
-    // $resultado=$objUsuarios->validarUsuario($datos);
-
-    $resultado = $objUsuarios->validarUsuario(array(
+    $datos = array(
         'usuario' => $usuario,
         'pass' => $pass
-    ));
-    $resultado= $objPermisos->buscarPermisos(array());
+    );
+
+    $resultado = $objUsuarios->validarUsuario($datos);
+
     if ($resultado == 'S') {
+        $permisos = $objPermisos->buscarPermisos(array('usuario' => $usuario));
+        $_SESSION['permisos'] = $permisos;
         header('Location: index.php');
+        exit();
     } else {
         $mensa = 'Datos incorrectos';
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

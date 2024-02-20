@@ -17,4 +17,3 @@ class C_Permisos extends Controlador {
     }
 }
 ?>
-?>
