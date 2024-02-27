@@ -12,7 +12,10 @@ class M_Permisos extends Modelo
     }
     //Devuelve todos los permisos de un usuario en particular
     function getPermisos($filtros = array()){
+    $id_usuario = "";
     extract($filtros);
+    echo $id_usuario;
+    
     // SELECT permiso.id_menu
     // FROM usuarios
     // INNER JOIN usuario_permiso ON usuarios.id_usuario = usuario_permiso.id_usuario
@@ -20,12 +23,21 @@ class M_Permisos extends Modelo
     // INNER JOIN menu ON menu.id_menu = permiso.id_menu
     // WHERE usuarios.id_usuario = 2
     // ORDER BY permiso.id_permiso ASC
-       $sql = "SELECT  permiso.id_menu
-       FROM usuarios
-       INNER JOIN usuario_permiso ON usuarios.id_usuario = usuario_permiso.id_usuario
-       INNER JOIN 
-       INNER JOIN permiso ON menu.id_permiso = permiso.id_menu
-       ORDER BY rol_permiso.id_permiso ASC;";
+    $sql = "SELECT DISTINCT permiso.id_menu , permiso.id_permiso
+    FROM usuarios
+    INNER JOIN usuario_rol ON usuarios.id_usuario = usuario_rol.id_usuario
+    INNER JOIN rol ON usuario_rol.id_rol = rol.id_rol
+    INNER JOIN rol_permiso ON rol.id_rol = rol_permiso.id_rol
+    INNER JOIN permiso ON rol_permiso.id_permiso = permiso.id_permiso
+    WHERE usuarios.id_usuario = ' $id_usuario '
+    UNION
+    SELECT DISTINCT permiso.id_menu ,permiso.id_permiso
+    FROM usuarios
+    INNER JOIN usuario_permiso ON usuarios.id_usuario = usuario_permiso.id_usuario
+    INNER JOIN permiso ON usuario_permiso.id_permiso = permiso.id_permiso
+    WHERE usuarios.id_usuario = ' $id_usuario '
+    ORDER BY id_menu;";
+
 
         echo $sql;
         $resultado = $this->DAO->consultar($sql);
@@ -37,6 +49,7 @@ class M_Permisos extends Modelo
         //  echo json_encode($resultado);
         return $resultadoId;
     }
+    
 
 }
 ?>

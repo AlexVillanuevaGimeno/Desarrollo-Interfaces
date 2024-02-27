@@ -18,10 +18,11 @@ if (empty($usuario) || empty($pass)) {
     $resultado = $objUsuarios->validarUsuario($datos);
 
     if ($resultado == 'S') {
-        $permisos = $objPermisos->buscarPermisos(array('usuario' => $usuario));
+        $permisos = $objPermisos->buscarPermisos(array('id_usuario' => $_SESSION['id_usuario']));
         $_SESSION['permisos'] = $permisos;
+        // exit();
         header('Location: index.php');
-        exit();
+    
     } else {
         $mensa = 'Datos incorrectos';
     }

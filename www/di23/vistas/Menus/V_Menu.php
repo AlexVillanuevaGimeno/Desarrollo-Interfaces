@@ -2,12 +2,12 @@
 <?php
 $sessionPermissions = $_SESSION['permisos'];  // replace this with where you store permissions in session
 $menuBueno = $datos['menuBueno'];
-// echo "hola";
+// echo $menuBueno;
 foreach($menuBueno as $padres){
     if(isset($padres['hijos'])){
         $hasPermission = false;
         foreach ($padres['hijos'] as $submenu) {
-            if (in_array($submenu['accion'], $sessionPermissions)) {
+            if (isset($_SESSION['permisos'][$submenu['id_menu']])) {
                 $hasPermission = true;
                 break;
             }
