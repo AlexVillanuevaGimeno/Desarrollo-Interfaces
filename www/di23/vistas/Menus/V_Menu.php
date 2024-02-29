@@ -1,16 +1,16 @@
 
 <?php
-$sessionPermissions = $_SESSION['permisos'];  // replace this with where you store permissions in session
+$sessionPermissions = $_SESSION['permisos'];
 $menuBueno = $datos['menuBueno'];
-// echo $menuBueno;
+// echo json_encode($menuBueno);
 foreach($menuBueno as $padres){
     if(isset($padres['hijos'])){
         $hasPermission = false;
-        foreach ($padres['hijos'] as $submenu) {
-            if (isset($_SESSION['permisos'][$submenu['id_menu']])) {
+        // foreach ($padres['hijos'] as $submenu) {
+            if (isset($_SESSION['permisos'][$padres['id_menu']])) {
                 $hasPermission = true;
-                break;
-            }
+                // break;
+            // }
         }
         if ($hasPermission) {
             echo '<a class="nav-link dropdown-toggle" href="#" id="dropdownMenu' . $padres['id_menu'] . '" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $padres['nombre_menu'] . '</a>';
@@ -25,11 +25,13 @@ foreach($menuBueno as $padres){
 
             echo '</ul>';
             // echo "estoy en permisos";
+        }else{
+            echo ''. $padres['nombre_'] . '';
         }
     }else{
         if (isset($_SESSION['permisos'][$padres['id_menu']])) {
             echo '<a class="nav-link" href="#">' . $padres['nombre_menu'] . '</a>';
-            // echo "no hay permisos";
+            
         }
     }
 }

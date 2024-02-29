@@ -10,10 +10,15 @@
             parent::__construct();
             $this->modelo = new M_Menu();
         }
+       
         public function getMenus($filtros=array()){
             $menus=$this->modelo->buscarMenu($filtros);
             Vista::render('vistas\Menus\V_Menu.php', array('menuBueno'=>$menus));
         }
-    
+        public function getVistaMttoMenus($parameters=array()){
+            $menus=$this->modelo->buscarMenu($parameters);
+            Vista::render('vistas\Menus\V_Menu.php', array('menuBueno'=>$menus));
+            Vista::render('vistas\Menus\V_MttoMenu.php');
+            }
     }
 ?>

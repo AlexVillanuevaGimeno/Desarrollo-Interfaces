@@ -11,7 +11,7 @@ class M_Menu extends Modelo{
         $this->DAO = new DAO();
     }
   
-    public function buscarMenu(){
+    public function  buscarMenu(){
       $SQL="SELECT * FROM Menu WHERE 1=1 ORDER BY ID_PADRE ASC, ORDEN ASC";
       $menus = $this->DAO->consultar($SQL);
       foreach ($menus as $menu) {
