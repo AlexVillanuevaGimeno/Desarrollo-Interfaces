@@ -17,7 +17,8 @@ echo json_encode($_SESSION['permisos']);
             href="librerias/bootstrap-5.1.3-dist/css/bootstrap.css">
         </link>
         <script src="js/app.js"></script>
-        <script src="js/menu.js"></script>
+        <script src="js/mttoMenus.js"></script>
+
         <!-- <script src="https://kit.fontawesome.com/f323bd5f47.js" crossorigin="anonymous"></script> -->
         <link rel="stylesheet" href="css/index.css">
         <title>Index 1ª Ev</title>

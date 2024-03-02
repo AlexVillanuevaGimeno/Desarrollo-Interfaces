@@ -1,15 +1,14 @@
-
 <?php
 $sessionPermissions = $_SESSION['permisos'];
 $menuBueno = $datos['menuBueno'];
 // echo json_encode($menuBueno);
-foreach($menuBueno as $padres){
-    if(isset($padres['hijos'])){
+foreach ($menuBueno as $padres) {
+    if (isset($padres['hijos'])) {
         $hasPermission = false;
         // foreach ($padres['hijos'] as $submenu) {
-            if (isset($_SESSION['permisos'][$padres['id_menu']])) {
-                $hasPermission = true;
-                // break;
+        if (isset($_SESSION['permisos'][$padres['id_menu']])) {
+            $hasPermission = true;
+            // break;
             // }
         }
         if ($hasPermission) {
@@ -19,22 +18,20 @@ foreach($menuBueno as $padres){
             // Ahora, itera para imprimir los submenús
             foreach ($padres['hijos'] as $submenu) {
                 if (isset($_SESSION['permisos'][$submenu['id_menu']])) {
-                    echo '<li><a class="dropdown-item" onclick="'.$submenu['accion'].'">' . $submenu['nombre_menu'] . '</a></li>';
+                    echo '<li><a class="dropdown-item" onclick="' . $submenu['accion'] . '">' . $submenu['nombre_menu'] . '</a></li>';
                 }
             }
 
             echo '</ul>';
             // echo "estoy en permisos";
-        }else{
-            echo ''. $padres['nombre_'] . '';
+        } else {
+            echo '' . $padres['nombre_menu'] . '';
         }
-    }else{
+    } else {
         if (isset($_SESSION['permisos'][$padres['id_menu']])) {
             echo '<a class="nav-link" href="#">' . $padres['nombre_menu'] . '</a>';
-            
+
         }
     }
 }
 ?>
-
-
