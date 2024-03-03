@@ -11,9 +11,9 @@ function imprimirMenu($menu, $nivel = 0)
     echo '<div style="border: 1px solid black; background-color: #b88d37; border-radius: 5px; padding: 10px; margin: 10px;">';
     echo '<span style="' . $estilo . '">' . str_repeat(' ', ($nivel - 1) * 4) . $menu['nombre_menu'] . "</span>";
 
-    echo '<button style="margin: 5px; ">Crear Menú</button>';
-    echo '<button style="margin: 5px; ">Actualizar Menú</button>';
-    echo '<button style="margin: 5px; ">Eliminar Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ')">Crear Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ')">Actualizar Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ')">Eliminar Menú</button>';
 
     echo '<br>';
     if (!empty($menu['hijos'])) {

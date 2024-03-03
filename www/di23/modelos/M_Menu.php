@@ -1,7 +1,7 @@
 <?php
 require_once 'modelos/Modelo.php';
 require_once 'modelos/DAO.php';
-require_once 'modelos/M_Permisos.php';
+
 class M_Menu extends Modelo{
     public $DAO;
 
@@ -24,6 +24,13 @@ class M_Menu extends Modelo{
         }
         }
       return $menuBueno;
+    }
+
+
+    public function insertarMenu($parameters = array()){
+      
+
+
     }
 
 
