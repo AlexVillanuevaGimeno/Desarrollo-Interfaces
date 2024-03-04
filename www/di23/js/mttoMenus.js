@@ -52,8 +52,8 @@ function validarMenu() {
   console.log("el id es= " + id_menuGuardada);
   if (id_menuGuardada === 0) {
     // Obtener los valores de los campos variables menus
-    const NOMBREMENU = document.querySelector("#nombreMenu").value.trim();
-    const IDPADRE = document.querySelector("#idPadre").value.trim();
+    const NOMBREMENU = document.querySelector("#nombre_menu").value.trim();
+    const IDPADRE = document.querySelector("#id_padre").value.trim();
     const ACCION = document.querySelector("#accion").value.trim();
     const ORDEN = document.querySelector("#orden").value.trim();
 
@@ -66,14 +66,14 @@ function validarMenu() {
     }
 
     // Validación de ID del padre
-    if (!IDPADRE) {
-      errores.push("El campo 'ID del Padre' es obligatorio.");
-    }
+    // if (IDPADRE) {
+    //   errores.push("El campo 'ID del Padre' es obligatorio.");
+    // }
 
     // Validación de acción
-    if (!ACCION) {
-      errores.push("El campo 'Acción' es obligatorio.");
-    }
+    // if (!ACCION) {
+    //   errores.push("El campo 'Acción' es obligatorio.");
+    // }
 
     // Validación de orden
     if (!ORDEN) {
@@ -103,10 +103,30 @@ function validarMenu() {
       : "";
 
     // Cambiar el color del campo de error
-    document.getElementById("nombreMenu").classList.toggle("error-field",errores.includes("El campo 'Nombre del Menú' es obligatorio."));
-    document.getElementById("idPadre").classList.toggle("error-field",errores.includes("El campo 'ID del Padre' es obligatorio."));
-    document.getElementById("accion").classList.toggle("error-field",errores.includes("El campo 'Acción' es obligatorio."));
-    document.getElementById("orden").classList.toggle("error-field",errores.includes("El campo 'Orden' es obligatorio."));
+    document
+      .getElementById("nombreMenuError")
+      .classList.toggle(
+        "error-field",
+        errores.includes("El campo 'Nombre del Menú' es obligatorio.")
+      );
+    // document
+    //   .getElementById("idPadreError")
+    //   .classList.toggle(
+    //     "error-field",
+    //     errores.includes("El campo 'ID del Padre' es obligatorio.")
+    //   );
+    // document
+    //   .getElementById("accionError")
+    //   .classList.toggle(
+    //     "error-field",
+    //     errores.includes("El campo 'Acción' es obligatorio.")
+    //   );
+    document
+      .getElementById("ordenError")
+      .classList.toggle(
+        "error-field",
+        errores.includes("El campo 'Orden' es obligatorio.")
+      );
     // Si hay errores, no continuas
     if (errores.length > 0) {
       return false;
@@ -127,102 +147,43 @@ function validarMenu() {
       })
       .then((vista) => {
         buscarMenus();
-        limpiarCamposCreate();
-        mostrarCamposCreate();
+        limpiarCamposCreateMenu();
+        // mostrarCamposCreate();
       })
       .catch((err) => {
         console.log("Error al realizar la peticion.", err.message);
       });
+
+    //UPDATE
   } else {
-    const EMAIL = document.querySelector("#emailUpdate").value.trim();
-    const TELEFONO = document.querySelector("#telefonoUpdate").value.trim();
-    // Validación de campos
-    let errores = [];
-    // Validación de correo electrónico
-    if (!/^\S+@\S+\.\S+$/.test(EMAIL)) {
-      errores.push(
-        "El campo 'Correo Electrónico' no es una dirección de correo válida."
-      );
-    }
-    // Validación de teléfono (debe tener 9 caracteres numéricos)
-    if (!/^\d{9}$/.test(TELEFONO)) {
-      errores.push("El campo 'Teléfono' debe contener 9 caracteres numéricos.");
-    }
-    document.getElementById("emailUpdateError").innerHTML = errores.includes(
-      "El campo 'Correo Electrónico' no es una dirección de correo válida."
-    )
-      ? "Dirección de correo inválida"
-      : "";
-    document.getElementById("telefonoUpdateError").innerHTML = errores.includes(
-      "El campo 'Teléfono' debe contener 9 caracteres numéricos."
-    )
-      ? "Formato inválido"
-      : "";
-    document
-      .getElementById("emailUpdate")
-      .classList.toggle(
-        "error-field",
-        errores.includes(
-          "El campo 'Correo Electrónico' no es una dirección de correo válida."
-        )
-      );
-    document
-      .getElementById("telefonoUpdate")
-      .classList.toggle(
-        "error-field",
-        errores.includes(
-          "El campo 'Teléfono' debe contener 9 caracteres numéricos."
-        )
-      );
-    // Si hay errores no continua
-    if (errores.length > 0) {
-      return false;
-    }
-    let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=updatearUsuario";
-    parametros += "&id_UsuarioGuardada=" + id_UsuarioGuardada;
-    parametros +=
-      "&" +
-      new URLSearchParams(
-        new FormData(document.getElementById("formularioUpdatear"))
-      ).toString();
-    fetch("C_Ajax.php?" + parametros, opciones)
-      .then((res) => {
-        if (res.ok) {
-          console.log("Respuesta ok");
-          return res.text();
-        }
-      })
-      .then((vista) => {
-        buscarUsuarios();
-        id_UsuarioGuardada = 0;
-        limpiarCamposUpdate();
-        mostrarCamposUpdate();
-      })
-      .catch((err) => {
-        console.log("Error al realizar la peticion.", err.message);
-      });
   }
 }
-function mostrarCamposCreate() {
-    var camposCreate = document.getElementById("camposCrear");
-    var camposUpdate = document.getElementById("camposUpdatear");
-    if (camposCreate.style.display === "none") {
-        if (camposUpdate.style.display === "block") {
-            camposUpdate.style.display = "none";
-            camposCreate.style.display = "block";
-        } else {
-            camposCreate.style.display = "block";
-        }
-    } else {
-        camposCreate.style.display = "none";
-    }
-
+function mostrarCamposCreateMenu() {
+  var camposCreate = document.getElementById("camposCrearMenu");
+  if (camposCreate.style.display == "none") {
+    camposCreate.style.display = "block";
+  } else {
+    camposCreate.style.display = "none";
+  }
 }
+// function mostrarCamposCreateMenu() {
+//     var camposCreate = document.getElementById("camposCrearMenu");
+//     var camposUpdate = document.getElementById("camposUpdatear");
+//     if (camposCreate.style.display === "none") {
+//         if (camposUpdate.style.display === "block") {
+//             camposUpdate.style.display = "none";
+//             camposCreate.style.display = "block";
+//         } else {
+//             camposCreate.style.display = "block";
+//         }
+//     } else {
+//         camposCreate.style.display = "none";
+//     }
+
+// }
 function limpiarCamposCreateMenu() {
-    // Obtiene el formulario por su ID
-    var formulario = document.getElementById("formularioCrearMenu");
-
-    // Resetea el formulario, limpiando todos los campos
-    formulario.reset();
-  }
+  // Obtiene el formulario por su ID
+  var formulario = document.getElementById("formularioCrearMenu");
+  // Resetea el formulario, limpiando todos los campos
+  formulario.reset();
+}

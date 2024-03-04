@@ -28,4 +28,6 @@ $menus = $datos['menus'];
 foreach ($menus as $menu) {
     imprimirMenu($menu, 1); // Comenzar con una sangría de 1 nivel
 }
+
+
 ?>

@@ -35,5 +35,11 @@ class C_Menu extends Controlador
             array('menus' => $menus)
         );
     }
+
+    public function insertarMenu($parameters = array())
+    {
+        $this->modelo->insertarMenu($parameters);
+    }
+
 }
 ?>
