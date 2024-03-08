@@ -1,13 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2023 a las 21:26:49
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.4.10
+-- Tiempo de generación: 04-03-2024 a las 12:55:05
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -27,11 +26,131 @@ USE `di23`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `menu`
+--
+
+CREATE TABLE `menu` (
+  `id_menu` int(11) NOT NULL,
+  `nombre_menu` varchar(50) NOT NULL,
+  `id_padre` int(11) DEFAULT NULL,
+  `accion` varchar(255) DEFAULT NULL,
+  `orden` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `menu`
+--
+
+INSERT INTO `menu` (`id_menu`, `nombre_menu`, `id_padre`, `accion`, `orden`) VALUES
+(1, 'Usuarios', NULL, NULL, 1),
+(2, 'Pedidos', NULL, NULL, 2),
+(3, 'CRUD', 1, 'getVistaMenuSeleccionado(\'Usuarios\', \'getVistaUsuarios\');', 1),
+(4, 'Disabled', 0, NULL, 4),
+(5, 'Mtto', NULL, NULL, 3),
+(6, 'Mtto.Menús', 5, 'getVistaMenuSeleccionado(\'Menu\', \'getVistaMttoMenus\');', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permiso`
+--
+
+CREATE TABLE `permiso` (
+  `id_permiso` int(11) NOT NULL,
+  `nombre_permiso` varchar(255) NOT NULL,
+  `id_menu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `permiso`
+--
+
+INSERT INTO `permiso` (`id_permiso`, `nombre_permiso`, `id_menu`) VALUES
+(1, 'VerMenuCRUDS', 3),
+(3, 'VerMenuUsuarios', 1),
+(4, 'VerSubmenusUsuarios', 1),
+(5, 'VerMenuPedidos', 2),
+(6, 'EditarMenuPedidos', 2),
+(7, 'VerUsuarios', 1),
+(8, 'UpdatearUsuarios', 1),
+(10, 'CrearUsuario', 1),
+(11, 'VerMenúMtto', 5),
+(12, 'CrearMenús', 6),
+(13, 'UpdatearMenús', 6),
+(14, 'BorrarMenús', 6),
+(15, 'VerMttoMenus', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol`
+--
+
+CREATE TABLE `rol` (
+  `id_rol` int(11) NOT NULL,
+  `nombre_rol` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `nombre_rol`) VALUES
+(1, 'Admin'),
+(2, 'MenuManager'),
+(3, 'UsuariosManager'),
+(4, 'UsuarioDefault');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol_permiso`
+--
+
+CREATE TABLE `rol_permiso` (
+  `id_rol` int(11) NOT NULL,
+  `id_permiso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `rol_permiso`
+--
+
+INSERT INTO `rol_permiso` (`id_rol`, `id_permiso`) VALUES
+(1, 1),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 10),
+(2, 1),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(4, 3),
+(4, 1),
+(4, 7),
+(3, 3),
+(3, 1),
+(3, 7),
+(3, 8),
+(3, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
-  `id_Usuario` int(11) UNSIGNED NOT NULL,
+  `id_usuario` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `apellido_1` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `apellido_2` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
@@ -42,16 +161,16 @@ CREATE TABLE `usuarios` (
   `login` varchar(40) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `pass` varchar(32) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `activo` char(1) NOT NULL DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES
-(1, 'javier', 'xxxx', 'xx', 'H', '2020-10-01', 'javier@2si2023.es', '976466599', 'javier', 'e9dbd0ab151d5957cd9869a142ba2fd1', 'S'),
-(2, 'admin', 'ad', 'ad', 'H', '2020-10-02', 'admin@2si2023.es', '976466590', 'admin', 'e9dbd0ab151d5957cd9869a142ba2fd1', 'S'),
-(7, 'Maria', 'Fernandez', 'Castro', 'H', '0000-00-00', 'mfernandez@2si2023.es', '2342423', 'safdfa', 'e10adc3949ba59abbe56e057f20f883e', 'S'),
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES
+(1, 'Alex', 'Villanueva', 'Gimeno', 'H', '2020-10-01', 'alex@svalero.com', '976466599', 'alex', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
+(2, 'admin', 'ad', 'ad', 'H', '2020-10-02', 'admin@2si2023.es', '976466590', 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
+(7, 'Manel', 'Fernandez', 'Castro', 'H', '0000-00-00', 'mfernandez@2si2023.es', '2342423', 'manel', '81dc9bdb52d04dc20036dbd8313ed055', 'S'),
 (8, 'Felipe', 'Smit', 'Fernandez', 'H', '2020-11-23', 'fsmit@2si2023.com', '976466599', 'fperez', 'e10adc3949ba59abbe56e057f20f883e', 'S'),
 (103, 'Carine ', 'Schmitt', '', 'M', '2020-02-15', 'Schmitt@2si2023.es', '64103103', 'Schmitt', '202cb962ac59075b964b07152d234b70', 'S'),
 (112, 'Jean', 'King', '', 'H', '2020-02-15', 'King@2si2023.es', '64112112', 'King', '202cb962ac59075b964b07152d234b70', 'S'),
@@ -177,27 +296,141 @@ INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sex
 (496, 'Tony', 'Snowden', '', 'H', '2020-02-15', 'Snowden@2si2023.es', '64496496', 'Snowden', '202cb962ac59075b964b07152d234b70', 'N'),
 (497, 'ss', 'ss', '', 'H', '2022-12-07', 'asfsdf@sfsd.es', '', 'javier22', '25d55ad283aa400af464c76d713c07ad', 'S');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_permiso`
+--
+
+CREATE TABLE `usuario_permiso` (
+  `id_usuario` int(11) UNSIGNED NOT NULL,
+  `id_permiso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_rol`
+--
+
+CREATE TABLE `usuario_rol` (
+  `id_rol` int(11) NOT NULL,
+  `id_usuario` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario_rol`
+--
+
+INSERT INTO `usuario_rol` (`id_rol`, `id_usuario`) VALUES
+(2, 1),
+(1, 2),
+(3, 7);
+
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id_menu`);
+
+--
+-- Indices de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  ADD PRIMARY KEY (`id_permiso`),
+  ADD KEY `fk_id_menu_permiso` (`id_menu`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id_rol`);
+
+--
+-- Indices de la tabla `rol_permiso`
+--
+ALTER TABLE `rol_permiso`
+  ADD KEY `fk_id_rol_permiso` (`id_rol`),
+  ADD KEY `fk_id_permiso_rol` (`id_permiso`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_Usuario`),
+  ADD PRIMARY KEY (`id_usuario`),
   ADD UNIQUE KEY `login` (`login`);
+
+--
+-- Indices de la tabla `usuario_permiso`
+--
+ALTER TABLE `usuario_permiso`
+  ADD PRIMARY KEY (`id_usuario`,`id_permiso`),
+  ADD KEY `fk_id_permiso_usuario` (`id_permiso`),
+  ADD KEY `fk_id_usuario_permiso` (`id_usuario`);
+
+--
+-- Indices de la tabla `usuario_rol`
+--
+ALTER TABLE `usuario_rol`
+  ADD KEY `fk_id_rol_usuario` (`id_rol`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_Usuario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
-SET FOREIGN_KEY_CHECKS=1;
+  MODIFY `id_usuario` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `permiso`
+--
+ALTER TABLE `permiso`
+  ADD CONSTRAINT `fk_id_menu_permiso` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`);
+
+--
+-- Filtros para la tabla `rol_permiso`
+--
+ALTER TABLE `rol_permiso`
+  ADD CONSTRAINT `fk_id_permiso_rol` FOREIGN KEY (`id_permiso`) REFERENCES `permiso` (`id_permiso`),
+  ADD CONSTRAINT `fk_id_rol_permiso` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
+
+--
+-- Filtros para la tabla `usuario_permiso`
+--
+ALTER TABLE `usuario_permiso`
+  ADD CONSTRAINT `fk_id_permiso_usuario` FOREIGN KEY (`id_permiso`) REFERENCES `permiso` (`id_permiso`),
+  ADD CONSTRAINT `fk_id_usuario_permiso` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
+
+--
+-- Filtros para la tabla `usuario_rol`
+--
+ALTER TABLE `usuario_rol`
+  ADD CONSTRAINT `fk_id_rol_usuario` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`),
+  ADD CONSTRAINT `usuario_rol_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
