@@ -2,8 +2,8 @@
 id_menuGuardada = 0;
 id_padreGuardada = 0;
 function buscarMenus(
-  id_menu
-  // id_padre
+  id_menu,
+  id_padre
 ) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Menu&metodo=busquedaMenusMtto";
@@ -16,10 +16,10 @@ function buscarMenus(
     parametros += "&id_menu=" + id_menu;
     console.log("parametros: " + parametros);
   }
-  // if (id_padre != null) {
-  //     metodos += "&id_padre=" + id_padre;
-  //     console.log("parametros: " + metodos)
-  // }
+  if (id_padre != null) {
+      metodos += "&id_padre=" + id_padre;
+      console.log("parametros: " + metodos)
+  }
   fetch("C_Ajax.php?" + parametros, opciones)
     .then((res) => {
       if (res.ok) {
@@ -37,24 +37,26 @@ function buscarMenus(
     });
 }
 
-function guardarIdMenu(
-  id_menu
-  //  id_padre
-) {
+function guardarIdMenu( id_menu ) {
   buscarMenus(id_menu);
-  id_UsuarioGuardada = id_menu;
-  // id_padreGuardada = id_padre;
+  id_menuGuardada = id_menu;
   console.log("Estoy guardando el id (funcion) " + id_menu);
   // console.log("Estoy guardando el id (funcion) " + id_padre);
+}
+function guardarIdMenuPadre(id_padre){
+  buscarMenus(null,id_padre);
+  id_padreGuardada = id_padre;
+  console.log("Estoy guardando el id (funcion) " + id_padre);
+
 }
 
 function validarMenu() {
   console.log("el id es= " + id_menuGuardada);
   if (id_menuGuardada === 0) {
+    const IDPADRE = id_menuGuardada;
+    
     // Obtener los valores de los campos variables menus
     const NOMBREMENU = document.querySelector("#nombre_menu").value.trim();
-    const IDPADRE = document.querySelector("#id_padre").value.trim();
-    const ACCION = document.querySelector("#accion").value.trim();
     const ORDEN = document.querySelector("#orden").value.trim();
 
     // Validación de campos
@@ -65,16 +67,6 @@ function validarMenu() {
       errores.push("El campo 'Nombre del Menú' es obligatorio.");
     }
 
-    // Validación de ID del padre
-    // if (IDPADRE) {
-    //   errores.push("El campo 'ID del Padre' es obligatorio.");
-    // }
-
-    // Validación de acción
-    // if (!ACCION) {
-    //   errores.push("El campo 'Acción' es obligatorio.");
-    // }
-
     // Validación de orden
     if (!ORDEN) {
       errores.push("El campo 'Orden' es obligatorio.");
@@ -83,16 +75,6 @@ function validarMenu() {
     // Mostrar mensajes de error sobre los campos
     document.getElementById("nombreMenuError").innerHTML = errores.includes(
       "El campo 'Nombre del Menú' es obligatorio."
-    )
-      ? "Campo obligatorio"
-      : "";
-    document.getElementById("idPadreError").innerHTML = errores.includes(
-      "El campo 'ID del Padre' es obligatorio."
-    )
-      ? "Campo obligatorio"
-      : "";
-    document.getElementById("accionError").innerHTML = errores.includes(
-      "El campo 'Acción' es obligatorio."
     )
       ? "Campo obligatorio"
       : "";
@@ -109,18 +91,6 @@ function validarMenu() {
         "error-field",
         errores.includes("El campo 'Nombre del Menú' es obligatorio.")
       );
-    // document
-    //   .getElementById("idPadreError")
-    //   .classList.toggle(
-    //     "error-field",
-    //     errores.includes("El campo 'ID del Padre' es obligatorio.")
-    //   );
-    // document
-    //   .getElementById("accionError")
-    //   .classList.toggle(
-    //     "error-field",
-    //     errores.includes("El campo 'Acción' es obligatorio.")
-    //   );
     document
       .getElementById("ordenError")
       .classList.toggle(
@@ -156,6 +126,7 @@ function validarMenu() {
 
     //UPDATE
   } else {
+
   }
 }
 function mostrarCamposCreateMenu() {

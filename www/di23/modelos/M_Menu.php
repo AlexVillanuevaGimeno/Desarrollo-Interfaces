@@ -60,7 +60,7 @@ class M_Menu extends Modelo
     }
 
     // Incrementar el orden de los menús con un orden igual o mayor al que se está insertando
-    $ordenIncrementado = $orden + 1;
+    // $ordenIncrementado = $orden + 1;
     $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$orden'";
     $this->DAO->actualizar($sqlActualizarOrden);
     //comprobacion nombre
@@ -71,7 +71,7 @@ class M_Menu extends Modelo
       // $id_padre = addslashes($id_padre);
       // $accion = addslashes($accion);
       //  
-      $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$ordenIncrementado');";
+      $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$orden');";
 
       echo $SQL;
 
