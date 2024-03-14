@@ -18,6 +18,7 @@ class C_Menu extends Controlador
         $menus = $this->modelo->buscarMenu($filtros);
         Vista::render('vistas\Menus\V_Menu.php', array('menuBueno' => $menus));
     }
+
     public function getVistaMttoMenus($parameters = array())
     {
         $menus = $this->modelo->buscarMenu($parameters);

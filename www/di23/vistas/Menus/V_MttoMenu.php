@@ -7,8 +7,8 @@
     <form id="formBusquedaMenus" name="formBusquedaMenus">
         <button class="btn btn-primary" type="button" name="btnBuscarMenus" id="btnBuscarMenus"
             onclick="buscarMenus()">Buscar</button>
-        <button class="btn btn-primary" type="button" name="btnCrearMenus" id="btnCrearMenus"
-            onclick="mostrarCamposCreateMenu()">Nuevo Menú</button>
+        <!-- <button class="btn btn-primary" type="button" name="btnCrearMenus" id="btnCrearMenus"
+            onclick="mostrarCamposCreateMenu()">Nuevo Menú</button> -->
     </form>
 
     <form id="formularioCrearMenu" name="formularioCrearMenu">

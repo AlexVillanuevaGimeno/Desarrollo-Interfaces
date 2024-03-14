@@ -28,6 +28,13 @@ class M_Menu extends Modelo
     return $menuBueno;
   }
 
+  // public function buscarOrden($parameters = array()){
+  //   $id_menu = "";
+  //   extract($parameters);
+  //   $SQL = "SELECT ORDEN FROM Menu WHERE ID_MENU = '$id_menu';";
+  //   $orden = $this->DAO->consultar($SQL);
+  // }
+
 
   public function insertarMenu($parameters = array())
   {
