@@ -48,15 +48,16 @@ function guardarIdMenuPadre(id_padre) {
   buscarMenus(id_padre);
   id_padreGuardada = id_padre;
   console.log("Estoy guardando el id (guardarIdPadre) " + id_padreGuardada);
-
 }
-function guardarOrden(orden){
+function guardarOrden(orden) {
   orden_guardada = orden;
   console.log("Estoy guardando el orden" + orden_guardada);
 }
 
 function validarMenu() {
   console.log("el idMenuGuardada es= " + id_menuGuardada);
+  console.log("el idPadreGuardada es= " + id_padreGuardada);
+  console.log("el orde Guardado es= " + orden_guardada);
   //ME HACES INSERT
   if (id_menuGuardada === 0) {
     if (id_padreGuardada != 0) {
@@ -69,7 +70,7 @@ function validarMenu() {
       const ORDEN = orden_guardada;
       //deshabilito el campo y asigno el valor
       document.getElementById("orden").disabled = true;
-      document.querySelector("#orden").value = ORDEN
+      document.querySelector("#orden").value = ORDEN;
       // Validación de campos
       let errores = [];
 
@@ -123,13 +124,13 @@ function validarMenu() {
       //desahbilito el campo y asigno el valor
       document.getElementById("id_padre").disabled = true;
       document.querySelector("#id_padre").value = 0;
-  
+
       // Obtener los valores de los campos variables menus
       const NOMBREMENU = document.querySelector("#nombre_menu").value.trim();
       const ORDEN = orden_guardada;
       //deshabilito el campo y asigno el valor
       document.getElementById("orden").disabled = true;
-      document.querySelector("#orden").value = ORDEN
+      document.querySelector("#orden").value = ORDEN;
 
       // Validación de campos
       let errores = [];
@@ -181,9 +182,8 @@ function validarMenu() {
     }
     //ME HACES UPDATE
   } else {
-
   }
-  
+
   // function mostrarCamposCreateMenu() {
   //     var camposCreate = document.getElementById("camposCrearMenu");
   //     var camposUpdate = document.getElementById("camposUpdatear");
@@ -199,7 +199,6 @@ function validarMenu() {
   //     }
 
   // }
-  
 }
 function mostrarCamposCreateMenu() {
   var camposCreate = document.getElementById("camposCrearMenu");

@@ -12,11 +12,11 @@ function imprimirMenu($menu, $nivel = 0)
     echo '<span id= "menus" nivel= "' . $nivel . '" style="' . $estilo . '">' . str_repeat(' ', ($nivel - 1) * 4) . $menu['nombre_menu'] . "</span>";
 
    
-    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ');">Actualizar Menú</button>';
-    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ')">Eliminar Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . '); guardarOrden('.$menu['id_menu'].');">Actualizar Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . '); guardarOrden('.$menu['id_menu'].');">Eliminar Menú</button>';
 
     echo '<br>';
-    echo '<button style="margin: 5px;" onclick="guardarIdMenuPadre(' . $menu['id_menu'] . '); validarMenu(); guardarOrden('.$menu['id_menu'].')">Crear Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenuPadre(' . $menu['id_menu'] . '); guardarOrden('.$menu['id_menu'].')">Crear Menú</button>';
     if (!empty($menu['hijos'])) {
         foreach ($menu['hijos'] as $hijo) {
             imprimirMenu($hijo, $nivel + 1);
