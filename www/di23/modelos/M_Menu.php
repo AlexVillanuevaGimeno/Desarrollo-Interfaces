@@ -73,11 +73,11 @@ class M_Menu extends Modelo
     //comprobacion nombre
    
 
-    if ($nombre_menu != "" && $orden != "") {
+    if ($nombre_menu != "") {
       // $nombre_menu = addslashes($nombre_menu);
       // $id_padre = addslashes($id_padre);
       // $accion = addslashes($accion);
-      //  
+      
       $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$orden');";
 
       echo $SQL;
@@ -85,7 +85,7 @@ class M_Menu extends Modelo
       $menus = $this->DAO->insertar($SQL);
       return $menus;
     } else {
-      echo "Error: LOS CAMPOS NOMBRE Y ORDEN SON OBLIGATORIOS.";
+      echo "Error: EL CAMPO NOMBRE";
     }
 
 

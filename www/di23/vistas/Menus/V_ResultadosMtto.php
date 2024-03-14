@@ -16,7 +16,7 @@ function imprimirMenu($menu, $nivel = 0)
     echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . ')">Eliminar Menú</button>';
 
     echo '<br>';
-    echo '<button style="margin: 5px;" onclick="guardarIdMenuPadre(' . $menu['id_menu'] . '); validarMenu();">Crear Menú</button>';
+    echo '<button style="margin: 5px;" onclick="guardarIdMenuPadre(' . $menu['id_menu'] . '); validarMenu(); guardarOrden('.$menu['id_menu'].')">Crear Menú</button>';
     if (!empty($menu['hijos'])) {
         foreach ($menu['hijos'] as $hijo) {
             imprimirMenu($hijo, $nivel + 1);
@@ -30,7 +30,7 @@ $menus = $datos['menus'];
 foreach ($menus as $menu) {
     imprimirMenu($menu, 1); // Comenzar con una sangría de 1 nivel
     echo '<button class="btn btn-primary" type="button" name="btnCrearMenus" id="btnCrearMenus"
-            onclick="mostrarCamposCreateMenu()">Nuevo Padre</button>';
+            onclick="mostrarCamposCreateMenu(); guardarOrden('.$menu['orden'].')">Nuevo Padre</button>';
 }
 
 
