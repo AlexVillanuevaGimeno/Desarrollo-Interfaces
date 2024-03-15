@@ -203,7 +203,25 @@ fetch("C_Ajax.php?" + parametros, opciones)
   }
 }
 
-
+function borrarMenu(id_menu){
+  let opciones = { method: "GET" };
+  let metodos = "controlador=Menu&metodo=borrarMenu";
+  metodos += "&id_menu=" + id_menu;
+  fetch("C_Ajax.php?" + metodos, opciones)
+    .then(res => {
+      if (res.ok) {
+        console.log('Respuesta ok');
+        return res.text();
+      }
+    })
+    .then(vista => {
+      buscarMenus();
+      id_menuGuardada = 0;
+    })
+    .catch(err => {
+      console.log("Error al realizar la petición", err.message);
+    });
+}
 
 
 

@@ -50,5 +50,9 @@ class C_Menu extends Controlador
         $this->modelo->updatearMenu($parameters);
     }
 
+    public function borrarMenu($parameters = array())
+    {
+        $this->modelo->deleteMenu($parameters);
+    }
 }
 ?>

@@ -13,7 +13,7 @@ function imprimirMenu($menu, $nivel = 0)
 
    
     echo '<button style="margin: 5px;" onclick=" guardarIdMenu(' . $menu['id_menu'] . '); mostrarCamposUpdateMenu();">Actualizar Menú</button>';
-    echo '<button style="margin: 5px;" onclick="guardarIdMenu(' . $menu['id_menu'] . '); guardarOrden('.$menu['id_menu'].');">Eliminar Menú</button>';
+    echo '<button style="margin: 5px;" onclick=" borrarMenu(' . $menu['id_menu'] . ');">Eliminar Menú</button>';
 
     echo '<br>';
     echo '<button style="margin: 5px;" onclick="guardarIdMenuPadre(' . $menu['id_menu'] . '); guardarOrden('.$menu['id_menu'].'); mostrarCamposCreateMenu();">Crear Menú</button>';
