@@ -4,7 +4,6 @@ id_padreGuardada = 0;
 orden_guardada = 0;
 function buscarMenus(
   id_menu
-  // id_padre
 ) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Menu&metodo=busquedaMenusMtto";
@@ -14,7 +13,7 @@ function buscarMenus(
       new FormData(document.getElementById("formBusquedaMenus"))
     ).toString();
   if (id_menu != null) {
-    parametros += "&id_menu=" + id_menu;
+    parametros += "id_menu=" + id_menu;
     console.log("parametros: " + parametros);
   }
   // if (id_padre != null) {
@@ -57,20 +56,20 @@ function guardarOrden(orden) {
 function validarMenu() {
   console.log("el idMenuGuardada es= " + id_menuGuardada);
   console.log("el idPadreGuardada es= " + id_padreGuardada);
-  console.log("el orde Guardado es= " + orden_guardada);
-  //ME HACES INSERT
+  console.log("el orden Guardado es= " + orden_guardada);
+  //ME HACES INSERT / CREATE
   if (id_menuGuardada === 0) {
     if (id_padreGuardada != 0) {
       // Obtener los valores de los campos variables menus
-      const IDPADRE = id_padreGuardada;
-      //deshabilito el campo y asigno el valor
+      // Deshabilitar el campo y asignar el valor
       document.getElementById("id_padre").disabled = true;
-      document.querySelector("#id_padre").value = IDPADRE;
+      document.querySelector("#id_padre").value = id_padreGuardada;
+
       const NOMBREMENU = document.querySelector("#nombre_menu").value.trim();
-      const ORDEN = orden_guardada;
-      //deshabilito el campo y asigno el valor
+      // Deshabilitar el campo y asignar el valor
       document.getElementById("orden").disabled = true;
-      document.querySelector("#orden").value = ORDEN;
+      document.querySelector("#orden").value = orden_guardada;
+
       // Validación de campos
       let errores = [];
 
@@ -98,11 +97,10 @@ function validarMenu() {
       }
       let opciones = { method: "GET" };
       let parametros = "controlador=Menu&metodo=insertarMenu";
-      parametros +=
-        "&" +
-        new URLSearchParams(
-          new FormData(document.getElementById("formularioCrearMenu"))
-        ).toString();
+      parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrearMenu"))).toString();
+      parametros += "&id_padre=" + id_padreGuardada;
+      parametros += "&orden=" + orden_guardada;
+      console.log("parametros= " + parametros)
       fetch("C_Ajax.php?" + parametros, opciones)
         .then((res) => {
           if (res.ok) {
@@ -112,6 +110,8 @@ function validarMenu() {
         })
         .then((vista) => {
           buscarMenus();
+          id_padreGuardada = 0;
+          orden_guardada = 0;
           limpiarCamposCreateMenu();
           mostrarCamposCreateMenu();
         })
@@ -119,18 +119,14 @@ function validarMenu() {
           console.log("Error al realizar la peticion.", err.message);
         });
     } else {
-      // Obtener los valores de los campos variables menus
-      const IDPADRE = id_padreGuardada;
-      //desahbilito el campo y asigno el valor
+      // Deshabilitar el campo y asignar el valor
       document.getElementById("id_padre").disabled = true;
       document.querySelector("#id_padre").value = 0;
 
-      // Obtener los valores de los campos variables menus
       const NOMBREMENU = document.querySelector("#nombre_menu").value.trim();
-      const ORDEN = orden_guardada;
-      //deshabilito el campo y asigno el valor
+      // Deshabilitar el campo y asignar el valor
       document.getElementById("orden").disabled = true;
-      document.querySelector("#orden").value = ORDEN;
+      document.querySelector("#orden").value = orden_guardada;
 
       // Validación de campos
       let errores = [];
@@ -159,11 +155,9 @@ function validarMenu() {
       }
       let opciones = { method: "GET" };
       let parametros = "controlador=Menu&metodo=insertarMenu";
-      parametros +=
-        "&" +
-        new URLSearchParams(
-          new FormData(document.getElementById("formularioCrearMenu"))
-        ).toString();
+      parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrearMenu"))).toString();
+      parametros += "&id_padre=" + id_padreGuardada;
+      parametros += "&orden=" + orden_guardada;
       fetch("C_Ajax.php?" + parametros, opciones)
         .then((res) => {
           if (res.ok) {
@@ -182,35 +176,89 @@ function validarMenu() {
     }
     //ME HACES UPDATE
   } else {
+    let opciones = { method: "GET" };
+let parametros = "controlador=Menu&metodo=updatearMenu";
+parametros += "&id_menu=" + id_menuGuardada;
+parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioUpdatearMenu"))).toString();
+console.log("parametros en update= " + parametros);
+fetch("C_Ajax.php?" + parametros, opciones)
+  .then(res => {
+    if (res.ok) {
+      console.log('Respuesta Ok');
+      return res.text();
+    }
+  })
+  .then(vista => {
+    buscarMenus();
+    id_menuGuardada = 0;
+    limpiarCamposUpdateMenu();
+    mostrarCamposUpdateMenu();
+  })
+  .catch(err => {
+    console.log("Error al realizar la petición", err.message);
+  });
+
+
+
   }
-
-  // function mostrarCamposCreateMenu() {
-  //     var camposCreate = document.getElementById("camposCrearMenu");
-  //     var camposUpdate = document.getElementById("camposUpdatear");
-  //     if (camposCreate.style.display === "none") {
-  //         if (camposUpdate.style.display === "block") {
-  //             camposUpdate.style.display = "none";
-  //             camposCreate.style.display = "block";
-  //         } else {
-  //             camposCreate.style.display = "block";
-  //         }
-  //     } else {
-  //         camposCreate.style.display = "none";
-  //     }
-
-  // }
 }
+
 function mostrarCamposCreateMenu() {
   var camposCreate = document.getElementById("camposCrearMenu");
-  if (camposCreate.style.display == "none") {
-    camposCreate.style.display = "block";
+  var camposUpdate = document.getElementById("camposUpdatearMenu");
+  if (id_padreGuardada !== 0) {
+    //desahbilito el campo y asigno el valor
+    document.getElementById("id_padre").disabled = true;
+    document.querySelector("#id_padre").value = id_padreGuardada;
   } else {
-    camposCreate.style.display = "none";
+    document.getElementById("id_padre").disabled = true;
+    document.querySelector("#id_padre").value = 0;
   }
+  if (orden_guardada !== 0) {
+    //deshabilito el campo y asigno el valor
+    document.getElementById("orden").disabled = true;
+    document.querySelector("#orden").value = orden_guardada;
+  }
+  if (camposCreate.style.display === "none") {
+    if (camposUpdate.style.display === "block") {
+        camposUpdate.style.display = "none";
+        camposCreate.style.display = "block";
+    } else {
+        camposCreate.style.display = "block";
+    }
+} else {
+    camposCreate.style.display = "none";
+}
+
+  console.log(document.querySelector("#id_padre").value = id_padreGuardada);
+  console.log(document.querySelector("#orden").value = orden_guardada);
+
 }
 function limpiarCamposCreateMenu() {
   // Obtiene el formulario por su ID
   var formulario = document.getElementById("formularioCrearMenu");
+  // Resetea el formulario, limpiando todos los campos
+  formulario.reset();
+}
+function mostrarCamposUpdateMenu() {
+  var camposCreate = document.getElementById("camposCrearMenu");
+  var camposUpdate = document.getElementById("camposUpdatearMenu");
+  if (camposUpdate.style.display === "none") {
+    if (camposCreate.style.display === "block") {
+      camposCreate.style.display = "none";
+      camposUpdate.style.display = "block";
+    } else {
+      camposUpdate.style.display = "block";
+    }
+  } else {
+    camposUpdate.style.display = "none";
+  }
+
+}
+
+function limpiarCamposUpdateMenu() {
+  // Obtiene el formulario por su ID
+  var formulario = document.getElementById("formularioUpdatearMenu");
   // Resetea el formulario, limpiando todos los campos
   formulario.reset();
 }

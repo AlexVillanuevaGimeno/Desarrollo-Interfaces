@@ -174,6 +174,7 @@ function validarUsuario() {
         });
 
     }else{
+        
     const EMAIL = document.querySelector('#emailUpdate').value.trim();
     const TELEFONO = document.querySelector('#telefonoUpdate').value.trim();
     // Validación de campos

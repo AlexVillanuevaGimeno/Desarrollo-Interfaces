@@ -19,10 +19,8 @@ class M_Menu extends Modelo
     foreach ($menus as $menu) {
       if ($menu['id_padre'] == 0) {
         $menuBueno[$menu['id_menu']] = $menu;
-
       } else {
         $menuBueno[$menu['id_padre']]['hijos'][] = $menu;
-
       }
     }
     return $menuBueno;
@@ -53,7 +51,6 @@ class M_Menu extends Modelo
     if ($filaNombre > 0) {
       echo "Error: Ya existe un menu con el mismo nombre.";
       return;
-
     }
     //al no ser auto increment lo hago a mano para que no de error
     $SQLid_menu = "SELECT COUNT(*) AS num_menus FROM Menu";
@@ -61,35 +58,88 @@ class M_Menu extends Modelo
     $id_menu = $num_menus[0]['num_menus'];
     $id_menu = $id_menu + 1;
 
-    //GESTIONO AL PADRE
-    if ($id_padre == 0) {
-      $id_padre = "";
-    }
+    // //GESTIONO AL PADRE
+    // if ($id_padre == 0) {
+    //   $id_padre = "";
 
-    // Incrementar el orden de los menús con un orden igual o mayor al que se está insertando
-    // $ordenIncrementado = $orden + 1;
-    $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$orden'";
-    $this->DAO->actualizar($sqlActualizarOrden);
+    // }
+
+    // Incrementar el orden 
+    $ordenIncrementado = $orden + 1;
+
     //comprobacion nombre
-   
-
     if ($nombre_menu != "") {
       // $nombre_menu = addslashes($nombre_menu);
       // $id_padre = addslashes($id_padre);
       // $accion = addslashes($accion);
-      
-      $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$orden');";
 
+      $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$ordenIncrementado');";
       echo $SQL;
-
       $menus = $this->DAO->insertar($SQL);
+      $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$ordenIncrementado'";
+      $this->DAO->actualizar($sqlActualizarOrden);
       return $menus;
     } else {
       echo "Error: EL CAMPO NOMBRE";
     }
-
-
   }
 
+
+  public function updatearMenu($parameters = array())
+  {
+    $id_menu = "";
+    $nombre_menu_updatear = "";
+    $id_padre_updatear = "";
+    $accion_updatear = "";
+    $orden_updatear = "";
+    extract($parameters);
+    echo $nombre_menu_updatear . " - " . $id_padre_updatear . " - " . $accion_updatear . " - " . $orden_updatear;
+
+    //comprobamos que el nombre de menu no se repita
+    if ($nombre_menu_updatear != "") {
+      $sqlVerificar = "SELECT COUNT(*) AS total FROM Menu WHERE nombre_menu = '$nombre_menu_updatear'";
+      $resultadoVerificar = $this->DAO->consultar($sqlVerificar);
+      $filaNombre = $resultadoVerificar[0]['total'];
+
+      if ($filaNombre > 0) {
+        // Ya existe un menu con el mismo nombre
+        echo '<script>alert("Error: Ya existe un menu con el mismo nombre.");</script>';
+        return;
+      }
+    }
+
+    $SQL2 = "";
+    $SQL = "UPDATE Menu SET ";
+    if ($nombre_menu_updatear != "") {
+      $SQL2 .= "nombre_menu = '$nombre_menu_updatear' ,";
+    }
+    if ($id_padre_updatear != "") {
+      $SQL2 .= "id_padre = '$id_padre_updatear' ,";
+    }
+    if ($accion_updatear != "") {
+      $SQL2 .= "accion = '$accion_updatear' ,";
+    }
+    if ($orden_updatear != "") {
+      $SQL2 .= "orden = '$orden_updatear' ";
+      // Incrementar el orden 
+    $ordenIncrementado = $orden_updatear  + 1;
+    $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$ordenIncrementado'";
+    $this->DAO->actualizar($sqlActualizarOrden);
+    }
+    $SQLCamposSinComa = substr($SQL2, 0, -2);
+    $SQL .= $SQLCamposSinComa;
+    $SQL .= " WHERE id_menu = $id_menu";
+    echo "SQL EN EL UPDATE= " . $SQL;
+
+    // Ejecutar la actualización
+    $result = $this->DAO->actualizar($SQL);
+
+    if ($result === false) {
+      // Manejar el error
+      echo '<script>alert("Error en la actualización del menu.");</script>';
+    } else {
+      // Todo salió bien
+      echo '<script>alert("Menu actualizado correctamente.");</script>';
+    }
+  }
 }
-?>

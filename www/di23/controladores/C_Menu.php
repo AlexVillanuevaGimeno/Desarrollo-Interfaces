@@ -45,6 +45,10 @@ class C_Menu extends Controlador
     {
         $this->modelo->insertarMenu($parameters);
     }
+    public function updatearMenu($parameters = array())
+    {
+        $this->modelo->updatearMenu($parameters);
+    }
 
 }
 ?>
