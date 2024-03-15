@@ -109,21 +109,27 @@ class M_Menu extends Modelo
     }
 
     $SQL2 = "";
+    //sentencia para actualizar
     $SQL = "UPDATE Menu SET ";
+    //si hay nombre
     if ($nombre_menu_updatear != "") {
       $SQL2 .= "nombre_menu = '$nombre_menu_updatear' ,";
     }
+    //si hay id_padre
     if ($id_padre_updatear != "") {
       $SQL2 .= "id_padre = '$id_padre_updatear' ,";
     }
+    //si hay accion
     if ($accion_updatear != "") {
       $SQL2 .= "accion = '$accion_updatear' ,";
     }
+    //si hay orden
     if ($orden_updatear != "") {
-      $SQL2 .= "orden = '$orden_updatear' ";
+      $SQL2 .= "orden = '$orden_updatear' ,";
       // Incrementar el orden 
-    $ordenIncrementado = $orden_updatear  + 1;
-    $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$ordenIncrementado'";
+    $ordenIncrementado = $orden_updatear + 1;
+    $sqlActualizarOrden = "UPDATE Menu SET ORDEN = '$ordenIncrementado' WHERE ORDEN >= '$orden_updatear'";
+    echo $sqlActualizarOrden;
     $this->DAO->actualizar($sqlActualizarOrden);
     }
     $SQLCamposSinComa = substr($SQL2, 0, -2);
@@ -142,4 +148,10 @@ class M_Menu extends Modelo
       echo '<script>alert("Menu actualizado correctamente.");</script>';
     }
   }
+
+
+
+
+
+  
 }

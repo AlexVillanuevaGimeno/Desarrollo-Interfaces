@@ -203,6 +203,11 @@ fetch("C_Ajax.php?" + parametros, opciones)
   }
 }
 
+
+
+
+
+
 function mostrarCamposCreateMenu() {
   var camposCreate = document.getElementById("camposCrearMenu");
   var camposUpdate = document.getElementById("camposUpdatearMenu");
@@ -255,7 +260,6 @@ function mostrarCamposUpdateMenu() {
   }
 
 }
-
 function limpiarCamposUpdateMenu() {
   // Obtiene el formulario por su ID
   var formulario = document.getElementById("formularioUpdatearMenu");
