@@ -16,13 +16,6 @@ class M_Permisos extends Modelo
     extract($filtros);
     echo $id_usuario;
     
-    // SELECT permiso.id_menu
-    // FROM usuarios
-    // INNER JOIN usuario_permiso ON usuarios.id_usuario = usuario_permiso.id_usuario
-    // INNER JOIN permiso ON usuario_permiso.id_permiso = permiso.id_permiso
-    // INNER JOIN menu ON menu.id_menu = permiso.id_menu
-    // WHERE usuarios.id_usuario = 2
-    // ORDER BY permiso.id_permiso ASC
     $sql = "SELECT DISTINCT permiso.id_menu , permiso.id_permiso
     FROM usuarios
     INNER JOIN usuario_rol ON usuarios.id_usuario = usuario_rol.id_usuario

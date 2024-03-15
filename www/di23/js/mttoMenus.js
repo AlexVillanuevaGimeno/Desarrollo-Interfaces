@@ -37,6 +37,7 @@ function buscarMenus(
     });
 }
 
+
 function guardarIdMenu(id_menu) {
   buscarMenus(id_menu);
   id_menuGuardada = id_menu;
@@ -52,6 +53,7 @@ function guardarOrden(orden) {
   orden_guardada = orden;
   console.log("Estoy guardando el orden" + orden_guardada);
 }
+
 
 function validarMenu() {
   console.log("el idMenuGuardada es= " + id_menuGuardada);
@@ -202,7 +204,6 @@ fetch("C_Ajax.php?" + parametros, opciones)
 
   }
 }
-
 function borrarMenu(id_menu){
   let opciones = { method: "GET" };
   let metodos = "controlador=Menu&metodo=borrarMenu";

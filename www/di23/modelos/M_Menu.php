@@ -53,10 +53,10 @@ class M_Menu extends Modelo
       return;
     }
     //al no ser auto increment lo hago a mano para que no de error
-    $SQLid_menu = "SELECT COUNT(*) AS num_menus FROM Menu";
-    $num_menus = $this->DAO->consultar($SQLid_menu);
-    $id_menu = $num_menus[0]['num_menus'];
-    $id_menu = $id_menu + 1;
+    // $SQLid_menu = "SELECT COUNT(*) AS num_menus FROM Menu";
+    // $num_menus = $this->DAO->consultar($SQLid_menu);
+    // $id_menu = $num_menus[0]['num_menus'];
+    // $id_menu = $id_menu + 1;
 
     // //GESTIONO AL PADRE
     // if ($id_padre == 0) {
@@ -85,8 +85,7 @@ class M_Menu extends Modelo
   }
 
 
-  public function updatearMenu($parameters = array())
-  {
+  public function updatearMenu($parameters = array()){
     $id_menu = "";
     $nombre_menu_updatear = "";
     $id_padre_updatear = "";
@@ -152,10 +151,12 @@ class M_Menu extends Modelo
   public function deleteMenu($parameters = array()){
     $id_menu = "";
     extract($parameters);
+    
     $SQL = "DELETE FROM Menu WHERE ID_MENU = '$id_menu';";
-    $menus = $this->DAO->borrar($SQL);
-    return $menus;
+    $this->DAO->borrar($SQL); // Eliminar el menú
+    
   }
+
 
 
 
