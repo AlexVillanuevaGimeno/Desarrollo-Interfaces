@@ -26,13 +26,6 @@ class M_Menu extends Modelo
     return $menuBueno;
   }
 
-  // public function buscarOrden($parameters = array()){
-  //   $id_menu = "";
-  //   extract($parameters);
-  //   $SQL = "SELECT ORDEN FROM Menu WHERE ID_MENU = '$id_menu';";
-  //   $orden = $this->DAO->consultar($SQL);
-  // }
-
 
   public function insertarMenu($parameters = array())
   {
@@ -52,18 +45,6 @@ class M_Menu extends Modelo
       echo "Error: Ya existe un menu con el mismo nombre.";
       return;
     }
-    //al no ser auto increment lo hago a mano para que no de error
-    // $SQLid_menu = "SELECT COUNT(*) AS num_menus FROM Menu";
-    // $num_menus = $this->DAO->consultar($SQLid_menu);
-    // $id_menu = $num_menus[0]['num_menus'];
-    // $id_menu = $id_menu + 1;
-
-    // //GESTIONO AL PADRE
-    // if ($id_padre == 0) {
-    //   $id_padre = "";
-
-    // }
-
     // Incrementar el orden 
     $ordenIncrementado = $orden + 1;
 
@@ -162,3 +143,4 @@ class M_Menu extends Modelo
 
 
 }
+
