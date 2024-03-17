@@ -45,8 +45,6 @@ class M_Menu extends Modelo
       echo "Error: Ya existe un menu con el mismo nombre.";
       return;
     }
-    // Incrementar el orden 
-    $ordenIncrementado = $orden + 1;
 
     //comprobacion nombre
     if ($nombre_menu != "") {
@@ -54,10 +52,10 @@ class M_Menu extends Modelo
       // $id_padre = addslashes($id_padre);
       // $accion = addslashes($accion);
 
-      $SQL = "INSERT INTO Menu (id_menu, nombre_menu, id_padre, accion, orden) VALUES ('$id_menu', '$nombre_menu', '$id_padre', '$accion', '$ordenIncrementado');";
+      $SQL = "INSERT INTO Menu ( nombre_menu, id_padre, accion, orden) VALUES ( '$nombre_menu', '$id_padre', '$accion', '$orden');";
       echo $SQL;
       $menus = $this->DAO->insertar($SQL);
-      $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$ordenIncrementado'";
+      $sqlActualizarOrden = "UPDATE Menu SET ORDEN = ORDEN + 1 WHERE ORDEN >= '$orden'";
       $this->DAO->actualizar($sqlActualizarOrden);
       return $menus;
     } else {
@@ -66,7 +64,8 @@ class M_Menu extends Modelo
   }
 
 
-  public function updatearMenu($parameters = array()){
+  public function updatearMenu($parameters = array())
+  {
     $id_menu = "";
     $nombre_menu_updatear = "";
     $id_padre_updatear = "";
@@ -107,10 +106,10 @@ class M_Menu extends Modelo
     if ($orden_updatear != "") {
       $SQL2 .= "orden = '$orden_updatear' ,";
       // Incrementar el orden 
-    $ordenIncrementado = $orden_updatear + 1;
-    $sqlActualizarOrden = "UPDATE Menu SET ORDEN = '$ordenIncrementado' WHERE ORDEN >= '$orden_updatear'";
-    echo $sqlActualizarOrden;
-    $this->DAO->actualizar($sqlActualizarOrden);
+      $ordenIncrementado = $orden_updatear + 1;
+      $sqlActualizarOrden = "UPDATE Menu SET ORDEN = '$ordenIncrementado' WHERE ORDEN >= '$orden_updatear'";
+      echo $sqlActualizarOrden;
+      $this->DAO->actualizar($sqlActualizarOrden);
     }
     $SQLCamposSinComa = substr($SQL2, 0, -2);
     $SQL .= $SQLCamposSinComa;
@@ -129,13 +128,14 @@ class M_Menu extends Modelo
     }
   }
 
-  public function deleteMenu($parameters = array()){
+  public function deleteMenu($parameters = array())
+  {
     $id_menu = "";
     extract($parameters);
-    
+
     $SQL = "DELETE FROM Menu WHERE ID_MENU = '$id_menu';";
     $this->DAO->borrar($SQL); // Eliminar el menú
-    
+
   }
 
 

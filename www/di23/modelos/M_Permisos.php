@@ -11,12 +11,13 @@ class M_Permisos extends Modelo
 
     }
     //Devuelve todos los permisos de un usuario en particular
-    function getPermisos($filtros = array()){
-    $id_usuario = "";
-    extract($filtros);
-    echo $id_usuario;
-    
-    $sql = "SELECT DISTINCT permiso.id_menu , permiso.id_permiso
+    function getPermisos($filtros = array())
+    {
+        $id_usuario = "";
+        extract($filtros);
+        echo $id_usuario;
+
+        $sql = "SELECT DISTINCT permiso.id_menu , permiso.id_permiso
     FROM usuarios
     INNER JOIN usuario_rol ON usuarios.id_usuario = usuario_rol.id_usuario
     INNER JOIN rol ON usuario_rol.id_rol = rol.id_rol
@@ -36,13 +37,28 @@ class M_Permisos extends Modelo
         $resultado = $this->DAO->consultar($sql);
 
         foreach ($resultado as $permiso) {
-            $resultadoId[$permiso['id_menu']][$permiso['id_permiso']] =true;
+            $resultadoId[$permiso['id_menu']][$permiso['id_permiso']] = true;
         }
 
         //  echo json_encode($resultado);
         return $resultadoId;
     }
-    
+
+    function getListaPermisos($filtros =array()){
+        $nombre  ="";
+        extract($filtros);
+        echo $nombre;
+        $SQL = "SELECT permiso.*
+        FROM usuarios
+        INNER JOIN rol_permiso ON usuarios.id_rol = rol_permiso.id_rol
+        INNER JOIN permiso ON rol_permiso.id_permiso = permiso.id_permiso
+        WHERE usuarios.nombre = '$nombre';";
+
+        echo $SQL;
+
+        $resultado = $this->DAO->consultar($SQL);
+        return $resultado;
+    }
 
 }
 ?>
