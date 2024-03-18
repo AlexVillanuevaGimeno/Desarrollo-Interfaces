@@ -23,6 +23,7 @@ class M_Menu extends Modelo
         $menuBueno[$menu['id_padre']]['hijos'][] = $menu;
       }
     }
+    // echo json_encode($menuBueno);
     return $menuBueno;
   }
 

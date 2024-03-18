@@ -17,6 +17,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
     </link>
     <script src="js/app.js"></script>
     <script src="js/mttoMenus.js"></script>
+    <script src="js/mttoPermisos.js"></script>
 
     <!-- <script src="https://kit.fontawesome.com/f323bd5f47.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="css/index.css">

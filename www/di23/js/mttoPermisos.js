@@ -1,7 +1,8 @@
 function buscarPermisos(){
     let opciones = { method: "GET" };
-    let metodos = "controlador=Permisos&metodo=getVistaPermisos";
-    fetch("C_Ajax.php?" + metodos, opciones)
+    let parametros = "controlador=Permisos&metodo=getResultadoPermisos";
+     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formBusquedaPermisos"))).toString();
+    fetch("C_Ajax.php?" + parametros, opciones)
         .then((res) => {
             if (res.ok) {
                 console.log("Respuesta ok");

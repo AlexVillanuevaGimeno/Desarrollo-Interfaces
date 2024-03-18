@@ -17,8 +17,12 @@ class C_Permisos extends Controlador {
     }
 
     public function getVistaPermisos ($filtros = array()) {
-        $permisos = $this->modelo->getListaPermisos($filtros);
-        Vista::render('vistas\Permisos\V_MttoPermisos.php', array('permisos' => $permisos));
+        
+        Vista::render('vistas\Permisos\V_MttoPermisos.php');
+}
+public function getResultadoPermisos($filtros = array()){
+    $permisos = $this->modelo->getListaPermisos($filtros);
+    Vista::render('vistas\Permisos\V_ResultadosPermisos.php',array('permisos' => $permisos));
 }
 }
 ?>

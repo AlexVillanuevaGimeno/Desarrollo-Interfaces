@@ -44,21 +44,47 @@ class M_Permisos extends Modelo
         return $resultadoId;
     }
 
-    function getListaPermisos($filtros =array()){
-        $nombre  ="";
+    function getListaPermisos($filtros = array()) {
+        $nombreUsuarioPermiso = "";
         extract($filtros);
-        echo $nombre;
-        $SQL = "SELECT permiso.*
-        FROM usuarios
-        INNER JOIN rol_permiso ON usuarios.id_rol = rol_permiso.id_rol
-        INNER JOIN permiso ON rol_permiso.id_permiso = permiso.id_permiso
-        WHERE usuarios.nombre = '$nombre';";
+        $id_usuario = null;
+        
+        // Obtener el ID del usuario por su nombre
+        if (!empty($nombreUsuarioPermiso)) {
+            $sql_nombre = "SELECT id_usuario FROM usuarios WHERE nombre = '$nombreUsuarioPermiso'";
+            $resultado_nombre = $this->DAO->consultar($sql_nombre);
+            if (!empty($resultado_nombre)) {
+                $id_usuario = $resultado_nombre[0]['id_usuario'];
+            }
+        }
+    
+        // Construir la parte de la consulta SQL para el JOIN
+        $sql_join = "";
+        if ($id_usuario !== null) {
+            $sql_join = " INNER JOIN rol_permiso rp ON p.id_permiso = rp.id_permiso 
+                         INNER JOIN rol r ON rp.id_rol = r.id_rol 
+                         INNER JOIN usuario_rol ur ON r.id_rol = ur.id_rol
+                         INNER JOIN usuarios u ON ur.id_usuario = u.id_usuario 
+                         LEFT JOIN usuario_permiso up ON u.id_usuario = up.id_usuario
+                         WHERE u.id_usuario = $id_usuario"; 
+        }
+    
+        // Consulta SQL para obtener los permisos
+        $SQL = "SELECT DISTINCT p.* FROM permiso p $sql_join ORDER BY p.id_permiso ASC";
+    
+        // Ejecutar la consulta
+        $permisos = $this->DAO->consultar($SQL);
+    
+        // Devolver los permisos
+        return $permisos;
+    }
 
-        echo $SQL;
-
+    function getAllPermisos(){
+        $SQL = "SELECT * FROM PERMISOS WHERE 1=1";
         $resultado = $this->DAO->consultar($SQL);
         return $resultado;
     }
+    
 
 }
 ?>
